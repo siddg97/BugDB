@@ -12,7 +12,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 var url = 'mongodb://localhost:27017/users';
-mongoose.connect(process.env.MONGODB_URI || url,{useNewUrlParser: true});
+var URL = 'mongodb://sidd0912:letwork123@ds223509.mlab.com:23509/heroku_5kr7k5fl';
+mongoose.connect(URL,{useNewUrlParser: true});
 const connection = mongoose.connection;
 
 connection.once('open',function(){
