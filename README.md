@@ -51,7 +51,7 @@ module.exports = mongoose.model('User', User);
   + `'localhost:3000/users/$id'` - here `$id` refers to the id of the user which is assigned automatically by our db. This query displays the info about user with the associated id given. [HTTP GET]
   + `'localhost:3000/users/add'` - Add a new user and its info to the database. [HTTP POST]
   + `'localhost:3000/users/update/:id'` - Update an existing users info in the database. [HTTP POST]
-- In order to test it you will need to download (Postman)[https://www.getpostman.com/].
+- In order to test it you will need to download [Postman](https://www.getpostman.com/).
 - Once you have postman running then you choose a certain protocol and then use it while your database is still running.
 
 #### Documentation by:
