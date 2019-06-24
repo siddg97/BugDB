@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = express.Router();
-const PORT = 4000;
+const PORT = process.env.PORT || 3000;
 
 let User = require('./user.model.js')
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 var url = 'mongodb://localhost:27017/users';
-mongoose.connect(url,{useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || url,{useNewUrlParser: true});
 const connection = mongoose.connection;
 
 connection.once('open',function(){
