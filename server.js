@@ -60,10 +60,16 @@ userRoutes.route('/update/:id').post(function(req,res){
 		} else {
 			user.UID = req.body.UID;
 			user.username = req.body.username;
-			user.passw = req.body.passw;
-			user.pName = req.body.pName;
-			user.sex = req.body.sex;
-
+			user.password = req.body.password;
+			user.preferredName = req.body.preferredName;
+			user.gender = req.body.gender;
+			user.contacts = req.body.contacts;
+			user.interests = req.body.interests;
+			user.courses = req.body.courses;
+			user.skillset = req.body.skillset;
+			user.bios = req.body.bios;
+			user.availability = req.body.availability;
+			
 			user.save().then(user => {
 				res.json('User updated!');
 			})
@@ -73,6 +79,26 @@ userRoutes.route('/update/:id').post(function(req,res){
 		}
 	});
 });
+
+// UID: Number,
+// 	username: String,
+// 	password: String,
+// 	preferredName: String,
+// 	gender: String,
+// 	contacts:{
+// 		email: String,
+// 		github: String,
+// 		linkedIn: String
+// 	},
+// 	interests: [Boolean],
+// 	courses: [String],
+// 	skillset: [skSet],
+// 	bios: String,
+// 	availability:{
+// 		am: [Boolean],
+// 		pm: [Boolean],
+// 		pm2: [Boolean]
+// 	},
 
 app.use('/users',userRoutes);
 
