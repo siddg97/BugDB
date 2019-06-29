@@ -4,8 +4,11 @@
   "description": "example log in db",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm insatll --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
