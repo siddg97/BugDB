@@ -8,6 +8,7 @@ import store from './store';
 
 import './App.css';
 import NavBar from './components/layout/Navbar.jsx';
+import Footer from './components/layout/Footer.jsx';
 import Landing from './components/layout/Landing.jsx';
 import Login from './components/auth/Login.jsx';
 import Signup from './components/auth/Signup.jsx';
@@ -46,6 +47,7 @@ class App extends React.Component {
 						<Switch>
 							<PrivateRoute exact path="/dashboard" component={Dashboard} />
 						</Switch>
+						<Footer />
 					</div>
 				</Router>
 			</Provider>
