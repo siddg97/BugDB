@@ -76,12 +76,13 @@ class Login extends Component {
 									id="email"
 									type="email"
 									className={classnames("", {
-										invalid: errs.email
+										invalid: errs.email || errs.emailnotfound
 									})}
 								/>
 								<label htmlFor="email">Email</label>
 								<span className="red-text">
 									{errs.email}
+									{errs.emailnotfound}
 								</span>
 							</div>
 							<div className="input-field col s12">
@@ -92,12 +93,13 @@ class Login extends Component {
 									id="password"
 									type="password"
 									className={classnames("", {
-										invalid: errs.password
+										invalid: errs.password || errs.passwordincorrect
 									})}
 								/>
 								<label htmlFor="password">Password</label>
 								<span className="red-text">
 									{errs.password}
+									{errs.passwordincorrect}
 								</span>
 							</div>
 							<div className="col s12" style={{ paddingLeft: "11.250px" }}>
