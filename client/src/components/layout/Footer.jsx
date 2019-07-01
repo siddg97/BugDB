@@ -19,7 +19,7 @@ class Footer extends React.Component {
 							<br/>
 							<ul>
 								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">vpn_key</i>{" "}Privacy Policy</Link></li>
-								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">import_contacts</i>{" "}Community Guidelines</Link></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">import_contacts</i>{" "}Code of Conduct</Link></li>
 								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">report</i>{" "}Cookie Policy</Link></li>
 							</ul>
 						</div>

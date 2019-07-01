@@ -12,7 +12,7 @@ class Login extends Component {
 		this.state = {
 			email: "",
 			password: "",
-			errs: {}
+			errors: {}
 		};
 	}
 
@@ -29,7 +29,7 @@ class Login extends Component {
 		}
 		if (nextProps.errors) {
 			this.setState({
-				errs: nextProps.errors
+				errors: nextProps.errors
 			});
 		}
 	}
@@ -44,13 +44,13 @@ class Login extends Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		console.log(userData);
+		// console.log(userData);
 		this.props.loginUser(userData);
 	};
 
 
 	render() {
-		const { errs } = this.state;
+		const { errors } = this.state;
 		return (
 			<div className="container" style={{height:"65vh"}}>
 				<div style={{ marginTop: "4rem" }} className="row">
@@ -72,34 +72,34 @@ class Login extends Component {
 								<input
 									onChange={this.onChange}
 									value={this.state.email}
-									error={errs.email}
+									error={errors.email}
 									id="email"
 									type="email"
 									className={classnames("", {
-										invalid: errs.email || errs.emailnotfound
+										invalid: errors.email || errors.emailnotfound
 									})}
 								/>
 								<label htmlFor="email">Email</label>
 								<span className="red-text">
-									{errs.email}
-									{errs.emailnotfound}
+									{errors.email}
+									{errors.emailnotfound}
 								</span>
 							</div>
 							<div className="input-field col s12">
 								<input
 									onChange={this.onChange}
 									value={this.state.password}
-									error={errs.password}
+									error={errors.password}
 									id="password"
 									type="password"
 									className={classnames("", {
-										invalid: errs.password || errs.passwordincorrect
+										invalid: errors.password || errors.passwordincorrect
 									})}
 								/>
 								<label htmlFor="password">Password</label>
 								<span className="red-text">
-									{errs.password}
-									{errs.passwordincorrect}
+									{errors.password}
+									{errors.passwordincorrect}
 								</span>
 							</div>
 							<div className="col s12" style={{ paddingLeft: "11.250px" }}>
