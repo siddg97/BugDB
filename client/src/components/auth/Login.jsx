@@ -27,9 +27,9 @@ class Login extends Component {
 		if (nextProps.auth.isAuthenticated) {
 			this.props.history.push("/dashboard"); // push user to dashboard when they login
 		}
-		if (nextProps.errs) {
+		if (nextProps.errors) {
 			this.setState({
-				errs: nextProps.errs
+				errs: nextProps.errors
 			});
 		}
 	}
@@ -52,7 +52,7 @@ class Login extends Component {
 	render() {
 		const { errs } = this.state;
 		return (
-			<div className="container">
+			<div className="container" style={{height:"65vh"}}>
 				<div style={{ marginTop: "4rem" }} className="row">
 					<div className="col s8 offset-s2">
 						<Link to="/" className="btn-flat waves-effect">
@@ -76,13 +76,12 @@ class Login extends Component {
 									id="email"
 									type="email"
 									className={classnames("", {
-										invalid: errs.email || errs.emailnotfound
+										invalid: errs.email
 									})}
 								/>
 								<label htmlFor="email">Email</label>
 								<span className="red-text">
 									{errs.email}
-									{errs.emailnotfound}
 								</span>
 							</div>
 							<div className="input-field col s12">
@@ -93,13 +92,12 @@ class Login extends Component {
 									id="password"
 									type="password"
 									className={classnames("", {
-										invalid: errs.password || errs.passwordincorrect
+										invalid: errs.password
 									})}
 								/>
 								<label htmlFor="password">Password</label>
 								<span className="red-text">
 									{errs.password}
-									{errs.passwordincorrect}
 								</span>
 							</div>
 							<div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -111,7 +109,7 @@ class Login extends Component {
 										marginTop: "1rem"
 									}}
 									type="submit"
-									className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+									className="btn btn-large waves-effect waves-light hoverable yellow darken-4"
 								>
 									Login
 								</button>
@@ -127,15 +125,12 @@ class Login extends Component {
 Login.propTypes = {
 	loginUser: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
-	errs: PropTypes.object.isRequired
+	errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
 	auth: state.auth,
-	errs: state.errs
+	errors: state.errors
 });
 
-export default connect(
-	mapStateToProps,
-	{ loginUser }
-)(Login);
+export default connect(mapStateToProps,{ loginUser })(Login);

@@ -18,24 +18,24 @@ class Footer extends React.Component {
 						<div className="col l3 s12">
 							<br/>
 							<ul>
-								<li><h6 className="white-text"><a className="white-text" href="#!">Privacy Policy</a></h6></li>
-								<li><h6 className="white-text"><a className="white-text" href="#!">Community Guidelines</a></h6></li>
-								<li><h6 className="white-text"><a className="white-text" href="#!">Cookie Policy</a></h6></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">vpn_key</i>{" "}Privacy Policy</Link></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">import_contacts</i>{" "}Community Guidelines</Link></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">report</i>{" "}Cookie Policy</Link></li>
 							</ul>
 						</div>
 						<div className="col l3 s12">
 							<br/>
 							<ul>
-								<li><h6 className="white-text"><a className="white-text" href="#!">Copyright Policy</a></h6></li>
-								<li><h6 className="white-text"><a className="white-text" href="#!">FAQ</a></h6></li>
-								<li><h6 className="white-text"><a className="white-text" href="#!">Contact & Feedback</a></h6></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">copyright</i>{" "}Copyright Policy</Link></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">info_outline</i>{" "}FAQ</Link></li>
+								<li><Link to="/" style={{fontFamily: "monospace"}} className="white-text brand-logo" ><i className="material-icons">feedback</i>{" "}Contact & Feedback</Link></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div className="footer-copyright center-align">
-					<div class="container">
-				 	letWork © 2019 &nbsp;
+					<div className="container">
+				 	letWork © 2019
 				 	</div>
 				</div>
 			</footer>
