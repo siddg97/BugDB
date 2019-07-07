@@ -12,7 +12,7 @@ class Navbar extends Component {
 							style={{
 								fontFamily: "monospace"
 							}}
-							className="col s5 brand-logo center black-text"
+							className="col s5 brand-logo left black-text"
 						>
 							<i className="large material-icons">code</i>
 							letWork
