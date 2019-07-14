@@ -28,7 +28,7 @@ class Signup extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.errors) {
 			this.setState({
-				errs: nextProps.errors
+				errors: nextProps.errors
 			});
 		}
 	}
@@ -46,7 +46,7 @@ class Signup extends Component {
 			password: this.state.password,
 			conf_pass: this.state.conf_pass
 		};
-		// console.log(newUser);
+		console.log(newUser);
 		this.props.registerUser(newUser,this.props.history);
 	};
 
@@ -55,7 +55,7 @@ class Signup extends Component {
 	render() {
 		const { errs } = this.state;
 		return (
-			<div className="container" style={{height:"75vh"}}>
+			<div className="container">
 				<div className="row">
 					<div className="col s8 offset-s2">
 						<Link to="/" className="btn-flat waves-effect">
@@ -136,7 +136,7 @@ class Signup extends Component {
 										marginTop: "1rem"
 									}}
 									type="submit"
-									className="btn btn-large waves-effect waves-light hoverable yellow darken-4"
+									className="btn btn-large waves-effect waves-light hoverable blue accent-3"
 								>
 									Sign up
 								</button>
