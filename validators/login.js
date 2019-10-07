@@ -7,7 +7,7 @@ module.exports = function verfiySignIn(data) {
 
 	// Convert empty fields to ""
 	data.email = !isEmpty(data.email) ? data.email : "";
-	data.pass  = !isEmpty(Data.pass) ? data.pass : "";
+	data.pass  = !isEmpty(data.pass) ? data.pass : "";
 
 	// Check Email
 	if(validator.isEmpty(data.email)){

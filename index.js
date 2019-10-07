@@ -24,14 +24,16 @@ var logDir = path.join(__dirname,'log');
 // make log directory if it doesnt exist
 fs.existsSync(logDir) || fs.mkdirSync(logDir);
 // create a rotating file stream to write to
-var accessLogStream = rfs('access.log', {
+var accessLogStream = rfs('server.log', {
 	size:'256K',
 	interval:'1d',
 	path: logDir
-})
+});
+// Create token for request body and response
+morgan.token('req-body', (req,res) => {return JSON.stringify(req.body)});
 
 // setup logger for express
-app.use(morgan('combined', { stream: accessLogStream }));
+app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" \nREQUEST BODY=":req-body"', { stream: accessLogStream }));
 
 // set up and connect MongoDB
 const db = process.env.MONGO_URI;

@@ -9,7 +9,8 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "server-dev": "./dev-tools/freeport.sh && nodemon index.js"
+    "server-dev": "nodemon index.js",
+	"free-port": "./dev-tools/freeport.sh"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
