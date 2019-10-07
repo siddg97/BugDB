@@ -18,25 +18,3 @@ mongoose.connect(db,{useNewUrlParser: true,useUnifiedTopology: true})
 	.catch(err => console.log(err));
 
 app.listen(PORT, () => console.log('>>>>>>>>>> Server listening on port '+PORT+' !'));
-
-// {
-//     "UID":,
-//     "Username": (string),
-//     "Password": (string),
-//     "Prefer Name": (string),
-//     "Gender": (int),
-//     "Contacts": {
-//         "email": (string),
-//         "LinkedIn": (string),
-//         "Github": (string),
-//     },
-//     "Interest": (array - boolean),
-//     "Courses": (array - string),
-//     "Skillsets": (array - object),
-//     "Bios": (string),
-//     "Availabilities": {
-//         "AvailabilitiesAM": (array - boolean),
-//         "AvailabilitiesPM": (array - boolean),
-//         "AvailabilitiesPM2": (array - boolean),
-//     },
-// }
