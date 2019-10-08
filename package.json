@@ -1,15 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "backend for letsCode",
+  "description": "backend for Links",
   "main": "index.js",
-  "repository": "https://github.com/siddg97/letWork-server.git",
+  "repository": "",
   "author": "Siddharth <g.sidd97@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "server-dev": "nodemon index.js",
+	"client-i":"npm install --prefix client",
+    "start": "npm run free-port && node index.js",
+    "server": "npm run free-port && nodemon index.js",
+	"client":"npm start --prefix client",
+	"dev":"concurrently \"npm run server\" \"npm run client\"",
 	"free-port": "./dev-tools/freeport.sh"
   },
   "dependencies": {
