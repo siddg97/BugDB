@@ -33,7 +33,7 @@ module.exports = function verifySignUp(data) {
 	}
 
 	if(!validator.isLength(data.pass,{ min:8, max:32 })){
-		errors.pass = "Password must be between 8-32 characters";
+		errors.pass = "Password must be between 8 and 32 characters";
 	}
 
 	if(!validator.equals(data.pass,data.pass2)){

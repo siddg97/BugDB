@@ -47,6 +47,6 @@ app.use(passport.initialize());
 require('./passport.js')(passport);
 
 // Routes
-app.use('/api/users',users);
+app.use('/api/user',users);
 
 app.listen(PORT, () => console.log('>>>>>>>>>> Server listening on port '+PORT+' !'));
