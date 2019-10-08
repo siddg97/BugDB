@@ -1,31 +1,34 @@
 {
-  "name": "auth",
+  "name": "server",
   "version": "1.0.0",
-  "description": "example log in db",
-  "main": "server.js",
-  "scripts": {
-    "client-install": "npm insatll --prefix client",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "description": "backend for Links",
+  "main": "index.js",
+  "repository": "",
+  "author": "Siddharth <g.sidd97@gmail.com>",
   "license": "MIT",
+  "private": true,
+  "scripts": {
+	"client-i":"npm install --prefix client",
+    "start": "npm run free-port && node index.js",
+    "server": "npm run free-port && nodemon index.js",
+	"client":"npm start --prefix client",
+	"dev":"concurrently \"npm run server\" \"npm run client\"",
+	"free-port": "./dev-tools/freeport.sh"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "concurrently": "^4.1.1",
+    "concurrently": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.2",
+    "mongoose": "^5.7.3",
+    "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^11.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
+    "rotating-file-stream": "^1.4.4",
+    "validator": "^11.1.0"
   }
 }
