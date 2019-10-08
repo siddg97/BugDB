@@ -41,7 +41,9 @@ router.post('/register', (req,res) => {
 					name: req.body.name,
 					email: req.body.email,
 					password: req.body.pass,
-					joined: Date.now()
+					joined: Date.now(),
+					links: [],
+					dirs: []
 				});
 				// encrypt password
 				bcrypt.genSalt(10,(err, salt) => {

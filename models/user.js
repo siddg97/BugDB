@@ -1,7 +1,47 @@
 const mongoose = require('mongoose');
 const scheme = mongoose.Schema;
 
-// create scheme
+// create schema for Links
+const LinkSchema = new scheme({
+	title:{
+		type: String,
+		required: true
+	},
+	url:{
+		type:String,
+		required: true
+	},
+	dir:{
+		type:String,
+		required: true
+	},
+	createdOn:{
+		type:Date,
+		default:Date.now()
+	},
+	notes:{
+		type:String,
+		default:""
+	}
+});
+
+//create schema for directories of links
+const DirSchema = new scheme({
+	name:{
+		type: String,
+		required: true
+	},
+	links:{
+		type: [LinkSchema],
+		default: []
+	},
+	subDir:{
+		type: [this],
+		default: []
+	}
+});
+
+// create User schema
 const UserSchema = new scheme({
 	name:{
 		type:String,
@@ -17,30 +57,16 @@ const UserSchema = new scheme({
 	},
 	joined:{
 		type:Date,
-		defualt:Date.now()
+		default:Date.now()
+	},
+	links:{
+		type: [LinkSchema],
+		default: []
+	},
+	dirs:{
+		type: [DirSchema],
+		default: []
 	}
 });
 
 module.exports = User = mongoose.model('users',UserSchema);
-
-// {
-//     "UID":,
-//     "Username": (string),
-//     "Password": (string),
-//     "Prefer Name": (string),
-//     "Gender": (int),
-//     "Contacts": {
-//         "email": (string),
-//         "LinkedIn": (string),
-//         "Github": (string),
-//     },
-//     "Interest": (array - boolean),
-//     "Courses": (array - string),
-//     "Skillsets": (array - object),
-//     "Bios": (string),
-//     "Availabilities": {
-//         "AvailabilitiesAM": (array - boolean),
-//         "AvailabilitiesPM": (array - boolean),
-//         "AvailabilitiesPM2": (array - boolean),
-//     },
-// }
