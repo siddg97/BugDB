@@ -7,7 +7,7 @@ module.exports = function verfiySignIn(data) {
 
 	// Convert empty fields to ""
 	data.email = !isEmpty(data.email) ? data.email : "";
-	data.pass  = !isEmpty(data.pass) ? data.pass : "";
+	data.password  = !isEmpty(data.password) ? data.password : "";
 
 	// Check Email
 	if(validator.isEmpty(data.email)){
@@ -17,8 +17,8 @@ module.exports = function verfiySignIn(data) {
 	}
 
 	// Check password
-	if(validator.isEmpty(data.pass)){
-		errors.pass = "Password is a required field";
+	if(validator.isEmpty(data.password)){
+		errors.password = "Password is a required field";
 	}
 
 	return {

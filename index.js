@@ -57,9 +57,9 @@ require('./configs/passport.js')(passport);
 // Routes
 
 // [1]={ Sign In and Sign Up }
-app.use('/',users);
+app.use('/api/user',users);
 
 // [2]={ Add folder }
-app.use('/folders',folders);
+app.use('/api/folder',folders);
 
 app.listen(PORT, () => console.log('>>>>>>>>>> Server listening on port '+PORT+' !'));

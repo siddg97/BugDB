@@ -8,12 +8,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-	"client-i":"npm install --prefix client",
-    "start": "npm run free-port && node index.js",
-    "server": "npm run free-port && nodemon index.js",
-	"client":"npm start --prefix client",
-	"dev":"concurrently \"npm run server\" \"npm run client\"",
-	"free-port": "./dev-tools/freeport.sh"
+		"client-i":"yarn install --prefix client",
+    "start": "yarn run free-port && node index.js",
+    "server": "yarn run free-port && nodemon index.js",
+		"client":"cd client && yarn start --prefix client",
+		"dev":"concurrently \"yarn run server\" \"yarn run client\"",
+		"free-port": "./dev-tools/freeport.sh"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -17,7 +17,6 @@ const User = require('../models/user.js');
 // ###############################
 // ###############################
 // ###    REGISTER ENDPOINT    ###
-// ### 					       ###
 // ### + Method = POST         ###
 // ### + Desc = register user  ###
 // ### + Access = public       ###
@@ -40,7 +39,7 @@ router.post('/register', (req,res) => {
 				const newUser = new User({
 					name: req.body.name,
 					email: req.body.email,
-					password: req.body.pass,
+					password: req.body.password,
 					joined: Date.now()
 				});
 				// encrypt password
@@ -78,19 +77,19 @@ router.post('/login',(req,res) => {
 	}
 
 	const email = req.body.email;
-	const pass  = req.body.pass;
+	const pass  = req.body.password;
 
 	// Find user
 	User.findOne({ email }).then(user => {
 		// Check if user exists
 		if(!user){
-			return res.status(404).json({ emailnotfound:"Email not found" });
+			return res.status(400).json({ email: "Email not found" });
 		}
 
 		bcrypt.compare(pass,user.password)
 			.then(isMatch => {
 				if(isMatch){
-					// Create JWT jwt_payload
+					// Create jwt_payload
 					const payload = {
 						id: user.id,
 						name: user.name
@@ -103,7 +102,7 @@ router.post('/login',(req,res) => {
 						});
 					});
 				} else {
-					return res.status(400).json({ passwordIncorrect: "Incorrect password." });
+					return res.status(404).json({ password: "Incorrect password" });
 				}
 			})
 			.catch(err => console.log(err));

@@ -8,8 +8,8 @@ module.exports = function verifySignUp(data) {
 	// Convert empty fields to ""
 	data.name = !isEmpty(data.name) ? data.name : "";
 	data.email = !isEmpty(data.email) ? data.email : "";
-	data.pass = !isEmpty(data.pass) ? data.pass : "";
-	data.pass2 = !isEmpty(data.pass2) ? data.pass2 : "";
+	data.password = !isEmpty(data.password) ? data.password : "";
+	data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
 	// Check name
 	if(validator.isEmpty(data.name)) {
@@ -24,20 +24,20 @@ module.exports = function verifySignUp(data) {
 	}
 
 	// Check passwords
-	if(validator.isEmpty(data.pass)){
-		errors.pass = "Password is a required field";
+	if(validator.isEmpty(data.password)){
+		errors.password = "Password is a required field";
 	}
 
-	if(validator.isEmpty(data.pass2)){
-		errors.pass2 = "Confirm Password is a required field";
+	if(validator.isEmpty(data.password2)){
+		errors.password2 = "Confirm Password is a required field";
 	}
 
-	if(!validator.isLength(data.pass,{ min:8, max:32 })){
-		errors.pass = "Password must be between 8-32 characters";
+	if(!validator.isLength(data.password,{ min:8, max:32 })){
+		errors.password = "Password must be between 8-32 characters";
 	}
 
-	if(!validator.equals(data.pass,data.pass2)){
-		errors.pass2 = "Passwords do not match";
+	if(!validator.equals(data.password,data.password2)){
+		errors.password2 = "Passwords do not match";
 	}
 
 	return {
