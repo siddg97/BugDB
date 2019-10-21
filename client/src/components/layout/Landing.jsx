@@ -12,7 +12,7 @@ class Landing extends Component {
 							Welcome to Links!
 						</Header>
 						<Segment placeholder>
-					    <Grid columns={2} stackable textAlign='center'>
+					    <Grid columns={2} centered stackable textAlign='center'>
 					      <Divider vertical>Or</Divider>
 					      <Grid.Row verticalAlign='middle'>
 					        <Grid.Column textAlign='center'>
@@ -24,7 +24,6 @@ class Landing extends Component {
 											<Button size='large' color='olive'> Login </Button>
 										</Link>
 					        </Grid.Column>
-
 					        <Grid.Column textAlign='center'>
 					          <Header icon>
 					            <Icon name='user plus' />
