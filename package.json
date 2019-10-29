@@ -9,10 +9,10 @@
   "private": true,
   "scripts": {
     "client-i": "yarn install --prefix client",
-    "start": "yarn run free-port && node index.js",
-    "server": "yarn run free-port && nodemon index.js",
+    "start": "yarn free-port && node index.js",
+    "server": "yarn free-port && nodemon index.js",
     "client": "cd client && yarn start --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
     "free-port": "./dev-tools/freeport.sh"
   },
   "dependencies": {
