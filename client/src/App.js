@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Layout } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+
+
+import Nav from './views/ui/Nav.jsx';
+import Home from './views/Home.jsx';
+import Folders from './views/Folders.jsx';
+import User from './views/User.jsx';
+
+const { Header, Footer, Content } = Layout;
+
 
 function App() {
+  const baseStyle={ minHeight:'100vh' };
+  const headerStyle={ }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Layout style={baseStyle}>
+        <Header style={headerStyle}> <Nav/> </Header>
+        <Content>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/dir' component={Folders} />
+            <Route path='/user' component={User} />
+          </Switch>
+        </Content>
+        <Footer> Footer </Footer>
+      </Layout>
     </div>
   );
 }
