@@ -32,7 +32,6 @@ const uStories = [
 // eslint-disable-next-line
 {/* Title, and welcome content */}
 function Head() {
-	const rowStyle = {padding:16};
 	return (
 		<List
 			style={{background:'#fff', padding:16, borderRadius:10}} 
