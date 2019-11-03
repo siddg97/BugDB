@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Typography, Row, Col, List, Icon } from 'antd';
+import { Card, Divider, Typography, Row, Col, List, Icon } from 'antd';
 
 import Register from './auth/Register.jsx';
 import Login from './auth/Login.jsx';
@@ -32,12 +32,13 @@ const uStories = [
 // eslint-disable-next-line
 {/* Title, and welcome content */}
 function Head() {
+	const style={background:'#000', padding:16, color:'#fff'};
 	return (
 		<List
-			style={{background:'#fff', padding:16, borderRadius:10}} 
-			header={<Title level={1}> Save, organize or share your links in a snap </Title>}
+			style={style} 
+			header={<Title style={{color:'#fff'}} level={1}> Save, organize or share your links in a snap </Title>}
 			dataSource={uStories}
-			renderItem={story => <List.Item>{story.icon}{'    '}<Text strong>{story.text}</Text></List.Item>}
+			renderItem={story => <Card bordered hoverable title={<Text strong>{story.text}</Text>}>{story.icon}</Card>}
 		/>
 	)
 }
