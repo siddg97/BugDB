@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Typography, Row, Col, List, Icon } from 'antd';
+import { Divider, Typography, Row, Col, List, Icon } from 'antd';
 
 import Register from './auth/Register.jsx';
 import Login from './auth/Login.jsx';
@@ -30,31 +29,33 @@ const uStories = [
 	},
 ];
 
+// eslint-disable-next-line
 {/* Title, and welcome content */}
 function Head() {
 	const rowStyle = {padding:16};
 	return (
-		<Row type='flex' justify='center' align='middle' style={rowStyle}>
-			<Col span={24}>
-				<List
-					style={{background:'#fff', padding:16, borderRadius:10}} 
-					header={<Title level={1}> Save, organize or share your links in a snap </Title>}
-					dataSource={uStories}
-					renderItem={story => <List.Item>{story.icon}{'    '}<Text strong>{story.text}</Text></List.Item>}
-				/>
-			</Col>
-		</Row>
+		<List
+			style={{background:'#fff', padding:16, borderRadius:10}} 
+			header={<Title level={1}> Save, organize or share your links in a snap </Title>}
+			dataSource={uStories}
+			renderItem={story => <List.Item>{story.icon}{'    '}<Text strong>{story.text}</Text></List.Item>}
+		/>
 	)
 }
 
+// eslint-disable-next-line
 {/* Login and Register forms */}
 function Body() {
+	const colStyle={padding:8};
 	return (
 		<Row type='flex' gutter={32} justify='center' align='middle'>
-			<Col span={24}>
+			<Col span={24} style={colStyle}>
 				<Login />
 			</Col>
-			<Col span={24}>
+			<Col span={24} style={colStyle}>
+				<Divider> <Title style={{color:'white'}}level={4}>OR</Title></Divider>
+			</Col>
+			<Col span={24} style={colStyle}>
 				<Register />
 			</Col>
 		</Row>
@@ -65,7 +66,7 @@ class Landing extends React.Component {
 	render() {
 		const wrapperStyle = {padding:32};
 		return (
-			<Row type='flex' align='middle' justify='center' style={wrapperStyle}>
+			<Row type='flex' gutter={48} align='middle' justify='center' style={wrapperStyle}>
 				<Col span={12}>
 					<Head/>
 				</Col>

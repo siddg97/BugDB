@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Input, Row, Col, Typography } from 'antd';
+import { Button, Card, Row, Col, Typography } from 'antd';
 
 const { Title } = Typography;
 
@@ -32,8 +32,8 @@ class Register extends React.Component {
 	render() {
 		const { name, email, password, password2 } = this.state;
 		const rowStyle={padding:16}
-		const cardStyle={background:'#8F1D21'}
-		const inputStyle={backgroundColor:'black',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
+		const cardStyle={background:'#141414'}
+		const inputStyle={backgroundColor:'#640D14',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
 		return (
 			<Card bordered={false} bodyStyle={cardStyle}>
 				<Row type='flex' style={rowStyle}>
@@ -44,18 +44,18 @@ class Register extends React.Component {
 				<form onSubmit={this.onSubmit}>
 					<Row gutter={24} type='flex' justify='start' align='middle' style={rowStyle}>
 						<Col span={12}>
-							<Input size='large' placeholder='Your full name...' id='name' value={name} onChange={this.onChange} style={inputStyle}/>
+							<input type='text' placeholder='Your full name...' id='name' value={name} onChange={this.onChange}/>
 						</Col>
 						<Col span={12}>
-							<Input size='large' placeholder='Your e-mail...' id='email' value={email} onChange={this.onChange} style={inputStyle}/>
+							<input type='text' placeholder='Your e-mail...' id='email' value={email} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row gutter={24} type='flex' justify='start' align='middle' style={rowStyle}>
 						<Col span={12}>
-							<Input size='large' placeholder='Password...' id='password' value={password} onChange={this.onChange} style={inputStyle}/>
+							<input type='password' placeholder='Password...' id='password' value={password} onChange={this.onChange}/>
 						</Col>
 						<Col span={12}>
-							<Input size='large' placeholder='Confirm password...' id='password2' value={password2} onChange={this.onChange} style={inputStyle}/>
+							<input type='password' placeholder='Confirm password...' id='password2' value={password2} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row type='flex' justify='center' style={rowStyle}>

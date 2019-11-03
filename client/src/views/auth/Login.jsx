@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Input, Row, Col, Typography } from 'antd';
+import { Button, Card, Row, Col, Typography } from 'antd';
 
 const { Title } = Typography;
 
@@ -31,8 +31,8 @@ class Login extends React.Component {
 	render() {
 		const { email, password } = this.state;
 		const rowStyle={padding:16}
-		const cardStyle={background:'black'}
-		const inputStyle={backgroundColor:'#8F1D21', color:'white',border:0,borderRadius:0,fontWeight:500, fontFamily:'Roboto Mono'}
+		const cardStyle={background:'#141414'}
+		const inputStyle={backgroundColor:'#640D14',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
 		return (
 			<Card bordered={false} bodyStyle={cardStyle}>
 				<Row type='flex' style={rowStyle}>
@@ -43,17 +43,17 @@ class Login extends React.Component {
 				<form onSubmit={this.onSubmit}>
 					<Row gutter={32} type='flex' justify='start' align='middle' style={rowStyle}>
 						<Col span={24}>
-							<Input size='large' placeholder='Your e-mail...' id='email' value={email} onChange={this.onChange} style={inputStyle}/>
+							<input type='text' placeholder='Your e-mail...' id='email' value={email} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row gutter={32} type='flex' justify='start' align='middle' style={rowStyle}>
 						<Col span={24}>
-							<Input size='large' placeholder='Password...' id='password' value={password} onChange={this.onChange} style={inputStyle}/>
+							<input type='password' placeholder='Password...' id='password' value={password} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row type='flex' justify='center' style={rowStyle}>
 						<Col span={6}>
-							<Button type='danger' block onClick={this.onSubmit} style={inputStyle}>Login</Button>
+							<Button type='danger' style={inputStyle} block onClick={this.onSubmit}>Login</Button>
 						</Col>
 					</Row>
 				</form>		

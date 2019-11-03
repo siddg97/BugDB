@@ -5,11 +5,18 @@
 	font-family: 'Roboto Mono', monospace;
 }
 
-.register-input {
+input[type=text], input[type=password] {
 	font-family: 'Roboto Mono', monospace;
-	background-color: black;
-	color: white;
+	background-color: #640D14;
+	color: #fff;
 	border: 0;
 	border-radius: 0;
-	font-weight: 500;
+	font-weight: 600;
+	width: 100%;
+	padding: 16px 14px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	background-color: #ececec;
+	color: black;
 }
