@@ -35,9 +35,11 @@ const logformat = '\n:remote-addr - :remote-user [:date[clf]] ":method :url HTTP
 
 // Initialize and configure express backend
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
 // setup logger for express
 app.use(morgan(logformat, { stream: accessLogStream }));
 
@@ -45,7 +47,7 @@ app.use(morgan(logformat, { stream: accessLogStream }));
 // set up and connect MongoDB
 const db = MURI;
 mongoose.connect(db,{useNewUrlParser: true,useUnifiedTopology: true})
-	.then(() => console.log(">>>>>>>>>> Connected to MongoDB"))
+	.then(() => console.log("+++++++++> Connected to MongoDB"))
 	.catch(err => console.error(err));
 //=====================[END]==============================
 
@@ -60,6 +62,6 @@ require('./configs/passport.js')(passport);
 app.use('/api/user',users);
 
 // [2]={ Add folder }
-app.use('/api/folder',folders);
+// app.use('/api/folder',folders);
 
 app.listen(PORT, () => console.log('>>>>>>>>>> Server listening on port '+PORT+' !'));

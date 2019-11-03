@@ -9,9 +9,9 @@ import {
 } from './types.js';
 
 // Register user
-export const registerUSer = (userData,history) => dispatch => {
+export const registerUser = (userData,history) => dispatch => {
 	axios
-		.post('/api/user/register',userData)
+		.post('http://localhost:5000/api/user/register',userData)
 		.then(res => history.push('/login'))
 		.catch(err => {
 			dispatch(getErrors(err));
@@ -19,9 +19,9 @@ export const registerUSer = (userData,history) => dispatch => {
 }
 
 // Login user
-export const loginUSer = userData => dispatch => {
+export const loginUser = userData => dispatch => {
 	axios
-		.post('/api/user/login',userData)
+		.post('http://localhost:5000/api/user/login',userData)
 		.then(res => {
 			const { token } = res.data;
 			localStorage.setItem('jwtToken', token);
@@ -61,5 +61,5 @@ export const getErrors = err => {
 	return {
 		type: GET_ERRORS,
 		payload: err.response.data
-;	}
+	}
 };

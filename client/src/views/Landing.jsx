@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Divider, Typography, Row, Col, List, Icon } from 'antd';
+import { Button, Card, Divider, Typography, Row, Col, List, Icon } from 'antd';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import Register from './auth/Register.jsx';
 import Login from './auth/Login.jsx';
@@ -49,14 +50,15 @@ function Body() {
 	const colStyle={padding:8};
 	return (
 		<Row type='flex' gutter={32} justify='center' align='middle'>
-			<Col span={24} style={colStyle}>
-				<Login />
+			<Col span={6} style={colStyle}>
+				<Link to='/login'>
+					<Button block type='primary'> Login </Button> 
+				</Link>
 			</Col>
-			<Col span={24} style={colStyle}>
-				<Divider> <Title style={{color:'white'}}level={4}>OR</Title></Divider>
-			</Col>
-			<Col span={24} style={colStyle}>
-				<Register />
+			<Col span={6} style={colStyle}>
+				<Link to='/register'>
+					<Button block type='danger'> Register </Button>
+				</Link>
 			</Col>
 		</Row>
 	)
