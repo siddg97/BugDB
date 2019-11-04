@@ -6,25 +6,30 @@ const { Title, Text } = Typography;
 
 const uStories = [
 	{
-		icon:<Icon type='book' style={{color:'red', fontSize:28}} size='large'/>,
-		text:'Bookmark important URLs',
+		icon:<Icon type='bug' style={{color:'red', fontSize:28}}/>,
+		text:'Track multiple bugs for your projects',
 		color:'red'
 	},
 	{
-		icon:<Icon type='folder-open' style={{color:'green', fontSize:28}} size='large'/>,
-		text:'Organize your bookmarks in directories',
+		icon:<Icon type='sort-ascending' style={{color:'green', fontSize:28}}/>,
+		text:'Assign priorities for each bug you wish to track',
 		color:'green'
 	},
 	{
-		icon:<Icon type='share-alt' style={{color:'blue', fontSize:28}} size='large'/>,
-		text:'Easy external sharing of your bookmarks',
+		icon:<Icon type='layout' style={{color:'blue', fontSize:28}} />,
+		text:'Minimalistic UI for optimized tracking experience',
 		color:'blue'
 	},
 	{
-		icon:<Icon type='cloud-server' style={{color:'blue', fontSize:28}} size='large'/>,
-		text:'Centralize your bookmarks across all your devices',
+		icon:<Icon type='cloud-server' style={{color:'blue', fontSize:28}}/>,
+		text:'Centralize your bugs across all your devices',
 		color:'blue'
 	},
+	{
+		icon:<Icon type='bar-chart' style={{color:'gray', fontSize: 28}}/>,
+		text:'Analyze your bug squashing performance',
+		color:'gray'
+	}
 ];
 
 // eslint-disable-next-line
@@ -34,7 +39,7 @@ function Head() {
 	return (
 		<List
 			style={style} 
-			header={<Title style={{color:'#fff'}} level={1}> Save, organize or share your links in a snap </Title>}
+			header={<Title style={{color:'#fff'}} level={1}> Start your painless bug tracking experience </Title>}
 			dataSource={uStories}
 			renderItem={story => <Card bordered hoverable title={<Text strong>{story.text}</Text>}>{story.icon}</Card>}
 		/>
@@ -49,7 +54,7 @@ function Body() {
 		<Row type='flex' gutter={32} justify='center' align='middle'>
 			<Col span={24} style={colStyle}>
 				<Link to='/login'>
-					<Button block type='primary'> 
+					<Button block icon='login' type='primary'> 
 						Login
 					</Button> 
 				</Link>
@@ -59,7 +64,7 @@ function Body() {
 			</Col>
 			<Col span={24} style={colStyle}>
 				<Link to='/register'>
-					<Button block type='danger'>
+					<Button block icon='user-add' type='danger'>
 						Register
 					</Button>
 				</Link>
