@@ -12,8 +12,7 @@ const passport = require('passport');
 
 // Routers
 const users = require('./routers/users.js');
-const folders = require('./routers/folders.js');
-
+const bugs = require('./routers/bugs.js');
 
 //====================[START]==========================
 // LOGGER: import libraries
@@ -61,7 +60,7 @@ require('./configs/passport.js')(passport);
 // [1]={ Sign In and Sign Up }
 app.use('/api/user',users);
 
-// [2]={ Add folder }
-// app.use('/api/folder',folders);
+// [2]={ Get/add bugs }
+app.use('/api/bugs',bugs);
 
 app.listen(PORT, () => console.log('>>>>>>>>>> Server listening on port '+PORT+' !'));

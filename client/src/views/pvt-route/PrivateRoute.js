@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const PrivateRoute = ({ component: Component, auth, ...rest}) => (
 	<Route
 		{...rest}
-		render={props => auth.userLoggedIn===true ? <Component {...props} /> : <Redirect to='/' />}
+		render={props => auth.userLoggedIn===true ? <Component {...props} /> : <Redirect to='/login' />}
 	/>
 );
 

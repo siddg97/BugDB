@@ -11,12 +11,11 @@ import { setUser, userLogout } from './redux/actions/authActions.js';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 
- 
 import Landing from './views/Landing.jsx';
 import Login from './views/auth/Login.jsx';
 import Register from './views/auth/Register.jsx';
 import PrivateRoute from './views/pvt-route/PrivateRoute.js';
-import Home from './views/pages/Home.jsx';
+import CoreApp from './views/CoreApp.jsx';
 
 if(localStorage.jwtToken) {
 	const token = localStorage.jwtToken;
@@ -31,31 +30,33 @@ if(localStorage.jwtToken) {
 }
 
 const { Content,Footer } = Layout;
-function App() {
-	const layoutStyle = {};
-	const baseStyle={ padding:'4vh', background:'#212D40', minHeight:'100vh'};
-	const footerStyle={background:'#11151C',color:'#fff'};
-	return (
-	<Provider store={store}>
-		<Layout style={layoutStyle}>
-			<Content style={baseStyle}>
-				<Row type='flex' align='middle' justify='center'>
-					<Col span={24}>
-						<Switch>
-							<Route exact path='/' component={Landing} />
-							<Route exact path='/login' component={Login} />
-							<Route exact path='/register' component={Register} />
-							<PrivateRoute exact path='/home' component={Home} />
-						</Switch>
-					</Col>
-				</Row>
-			</Content>
-			<Footer style={footerStyle}>
-				FOOTER GOES HERE
-			</Footer>
-		</Layout>
-	</Provider>
-	);
+class App extends React.Component {
+	render() {
+		const layoutStyle = {};
+		const baseStyle={ padding:'4vh', background:'#212D40', minHeight:'100vh'};
+		const footerStyle={background:'#11151C',color:'#fff'};
+		return (
+		<Provider store={store}>
+			<Layout style={layoutStyle}>
+				<Content style={baseStyle}>
+					<Row type='flex' align='middle' justify='center'>
+						<Col span={24}>
+							<Switch>
+								<Route exact path='/' component={Landing} />
+								<Route path='/login' component={Login} />
+								<Route path='/register' component={Register} />
+								<PrivateRoute path='/app' component={CoreApp} />
+							</Switch>
+						</Col>
+					</Row>
+				</Content>
+				<Footer style={footerStyle}>
+					FOOTER GOES HERE
+				</Footer>
+			</Layout>
+		</Provider>
+		);
+	}
 }
 
 export default App;

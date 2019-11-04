@@ -16,9 +16,15 @@ class Login extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		if (this.props.auth.userLoggedIn){
+			this.props.history.push('/app')
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.auth.userLoggedIn) {
-			this.props.history.push('/home');
+			this.props.history.push('/app');
 		} else{
 			if(nextProps.errors) {
 				this.setState({errors: nextProps.errors});
@@ -45,22 +51,18 @@ class Login extends React.Component {
 	render() {
 		const { email, password, errors } = this.state;
 		const rowStyle={padding:16}
+		const colStyle={padding:16}
 		const cardStyle={background:'#141414'}
 		const inputStyle={backgroundColor:'#640D14',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
-				<Col span={14}>
+				<Col span={14} style={colStyle}>
 					<Card 
 						bordered={false} 
 						bodyStyle={cardStyle}
 					>
 						<Row type='flex' gutter={32} style={rowStyle}>
-							<Col span={6}>
-								<Link to='/'>
-									<Button block type='primary' icon='arrow-left' />
-								</Link>
-							</Col>
-							<Col push={4} span={12}>
+							<Col span={12}>
 								<Title style={{color:'white'}}level={4}>Log In</Title>
 							</Col>
 						</Row>
@@ -77,15 +79,29 @@ class Login extends React.Component {
 									{ errors.password ? <Text type='danger'>{errors.password}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' justify='center' style={rowStyle}>
-								<Col span={6}>
+							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
+								<Col span={8}>
+									<Link to='/'>
+										<Button block type='primary' icon='arrow-left'/>
+									</Link>
+								</Col>
+								<Col span={8}>
 									<Button type='danger' style={inputStyle} block onClick={this.onSubmit}>Login</Button>
+								</Col>
+								<Col span={8}>
+									<center>
+										<Text type='danger'> Dont have an account? </Text>
+										<Link to='/register'>
+											<Button type='link'>Sign Up</Button>
+										</Link>
+									</center>
 								</Col>
 							</Row>
 						</form>
 					</Card>
 				</Col>
 			</Row>
+
 		)
 	}
 }

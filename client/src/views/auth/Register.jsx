@@ -19,6 +19,12 @@ class Register extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		if (this.props.auth.userLoggedIn){
+			this.props.history.push('/app')
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.errors) {
 			this.setState({
@@ -53,12 +59,7 @@ class Register extends React.Component {
 				<Col span={14}>
 					<Card bordered={false} bodyStyle={cardStyle}>
 						<Row type='flex' gutter={32} style={rowStyle}>
-							<Col span={6}>
-								<Link to='/'>
-									<Button block type='primary' icon='arrow-left' />
-								</Link>
-							</Col>
-							<Col push={1} span={12}>
+							<Col span={12}>
 								<Title style={{color:'white'}}level={4}>Sign Up for a free account </Title>
 							</Col>
 						</Row>
@@ -87,9 +88,22 @@ class Register extends React.Component {
 									{ errors.password2 ? <Text type='danger'>{errors.password2}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' justify='center' style={rowStyle}>
-								<Col span={6}>
+							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
+								<Col span={8}>
+									<Link to='/'>
+										<Button block type='primary' icon='arrow-left'/>
+									</Link>
+								</Col>
+								<Col span={8}>
 									<Button block onClick={this.onSubmit} style={inputStyle}>Register</Button>
+								</Col>
+								<Col span={8}>
+									<center>
+										<Text type='danger'>Already have an account? </Text>
+										<Link to='/login'>
+											<Button type='link'> Sign In </Button>
+										</Link>
+									</center>
 								</Col>
 							</Row>
 						</form>

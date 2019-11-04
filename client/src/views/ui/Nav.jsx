@@ -4,7 +4,7 @@ import { Button, Drawer, Icon, Menu } from 'antd';
 
 const menu = [
 	{
-		path:'/',
+		path:'/home',
 		title:'Home',
 		icon:'home'
 	},
