@@ -5,13 +5,18 @@ import { connect } from 'react-redux';
 class Home extends React.Component {
 	render() {
 		const { user } = this.props.auth;
-		const { uid, name } = user;
 		return (
-			<div> 
-				HOME PAGE
+			<div style={{background:'#fff'}}> 
+				<h1>HOME PAGE</h1>
+				<h2> Welcome {user.name}</h2>
+				<h3> UID: {'  ' + user.id}</h3>
 			</div>
 		);
 	}
 }
 
-export default Home;
+const mapStateToProps = state => ({
+	auth: state.auth
+});
+
+export default connect(mapStateToProps)(Home);

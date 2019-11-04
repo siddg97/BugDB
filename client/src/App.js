@@ -15,7 +15,12 @@ import Landing from './views/Landing.jsx';
 import Login from './views/auth/Login.jsx';
 import Register from './views/auth/Register.jsx';
 import PrivateRoute from './views/pvt-route/PrivateRoute.js';
-import CoreApp from './views/CoreApp.jsx';
+
+import Nav from './views/ui/Nav.jsx';
+import Home from './views/pages/Home.jsx';
+import Bugs from './views/pages/Bugs.jsx';
+import User from './views/pages/User.jsx';
+
 
 if(localStorage.jwtToken) {
 	const token = localStorage.jwtToken;
@@ -38,6 +43,7 @@ class App extends React.Component {
 		return (
 		<Provider store={store}>
 			<Layout style={layoutStyle}>
+				<Nav />
 				<Content style={baseStyle}>
 					<Row type='flex' align='middle' justify='center'>
 						<Col span={24}>
@@ -45,7 +51,9 @@ class App extends React.Component {
 								<Route exact path='/' component={Landing} />
 								<Route path='/login' component={Login} />
 								<Route path='/register' component={Register} />
-								<PrivateRoute path='/app' component={CoreApp} />
+								<PrivateRoute path='/home' component={Home} />
+								<PrivateRoute path='/bugs' component={Bugs} />
+								<PrivateRoute path='/user' component={User} />
 							</Switch>
 						</Col>
 					</Row>

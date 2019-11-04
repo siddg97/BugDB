@@ -18,13 +18,13 @@ class Login extends React.Component {
 
 	componentDidMount() {
 		if (this.props.auth.userLoggedIn){
-			this.props.history.push('/app')
+			this.props.history.push('/home')
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.auth.userLoggedIn) {
-			this.props.history.push('/app');
+			this.props.history.push('/home');
 		} else{
 			if(nextProps.errors) {
 				this.setState({errors: nextProps.errors});
