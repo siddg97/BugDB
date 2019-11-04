@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Icon, Row, Col, Typography } from 'antd';
+import { Button, Card, Row, Col, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -53,12 +53,12 @@ class Register extends React.Component {
 				<Col span={14}>
 					<Card bordered={false} bodyStyle={cardStyle}>
 						<Row type='flex' gutter={32} style={rowStyle}>
-							<Col span={2}>
+							<Col span={6}>
 								<Link to='/'>
-									<Button block type='danger'><Icon type='arrow-left'/></Button>
+									<Button block type='primary' icon='arrow-left' />
 								</Link>
 							</Col>
-							<Col span={12}>
+							<Col push={1} span={12}>
 								<Title style={{color:'white'}}level={4}>Sign Up for a free account </Title>
 							</Col>
 						</Row>

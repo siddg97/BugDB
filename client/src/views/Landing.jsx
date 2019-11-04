@@ -1,9 +1,6 @@
 import React from 'react';
 import { Button, Card, Divider, Typography, Row, Col, List, Icon } from 'antd';
-import { Switch, Route, Link } from 'react-router-dom';
-
-import Register from './auth/Register.jsx';
-import Login from './auth/Login.jsx';
+import { Link } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
@@ -50,14 +47,21 @@ function Body() {
 	const colStyle={padding:8};
 	return (
 		<Row type='flex' gutter={32} justify='center' align='middle'>
-			<Col span={6} style={colStyle}>
+			<Col span={24} style={colStyle}>
 				<Link to='/login'>
-					<Button block type='primary'> Login </Button> 
+					<Button block type='primary'> 
+						Login
+					</Button> 
 				</Link>
 			</Col>
-			<Col span={6} style={colStyle}>
+			<Col span={24}>
+				<Divider style={{color:'#fff'}}> OR </Divider>
+			</Col>
+			<Col span={24} style={colStyle}>
 				<Link to='/register'>
-					<Button block type='danger'> Register </Button>
+					<Button block type='danger'>
+						Register
+					</Button>
 				</Link>
 			</Col>
 		</Row>
@@ -69,10 +73,10 @@ class Landing extends React.Component {
 		const wrapperStyle = {padding:32};
 		return (
 			<Row type='flex' gutter={48} align='middle' justify='center' style={wrapperStyle}>
-				<Col span={12}>
+				<Col span={14}>
 					<Head/>
 				</Col>
-				<Col span={12}>
+				<Col span={10}>
 					<Body/>
 				</Col>
 			</Row>
