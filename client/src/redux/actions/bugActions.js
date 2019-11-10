@@ -2,14 +2,15 @@ import axios from 'axios';
 import {
 	BUG_LOADING,
 	SET_BUGS,
-	GET_ERRORS
+	GET_ERRORS,
+	CREATE_BUG
 } from './types.js';
 
 // add a bug
 export const addBug = bugData => dispatch => {
 	axios
 		.post('/api/bugs/', bugData)
-		.then(res => dispatch(setBugs(res.data)))
+		.then(res => dispatch(createBug(res.data)))
 		.catch(err => {
 			dispatch(getErrors(err));
 		});
@@ -29,6 +30,14 @@ export const setBugs = bugs => {
 	return {
 		type: SET_BUGS,
 		payload: bugs
+	};
+}
+
+// Action creator
+export const createBug = bug => {
+	return {
+		type: CREATE_BUG,
+		payload: bug
 	};
 }
 

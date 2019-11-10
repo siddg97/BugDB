@@ -34,8 +34,7 @@ router.post('/', (req,res) => {
 		description: req.body.description
 	});
 	newBug.save()
-	Bug.find({openedBy: req.body.openedBy})
-		.then(bugs => res.send(bugs))
+		.then(bug => res.json(bug))
 		.catch(err => console.log(err));
 })
 
