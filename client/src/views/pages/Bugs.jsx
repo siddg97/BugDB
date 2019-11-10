@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getBugs, addBug } from '../../redux/actions/bugActions.js';
+import { getBugs, addBug, deleteBug } from '../../redux/actions/bugActions.js';
 
 class Bugs extends React.Component {
 	constructor() {
@@ -35,12 +35,14 @@ class Bugs extends React.Component {
 		const { title, status, description } = this.state;
 		const newBug = {
 			title: title,
-			openedBy: this.props.auth.user.id,
 			status: status,
-			openedOn: Date.now(),
 			description: description
 		};
 		this.props.addBug(newBug);
+	}
+
+	onDelete = id => {
+		this.props.deleteBug(id);
 	}
 
 	render() {
@@ -57,6 +59,7 @@ class Bugs extends React.Component {
 						<li key={i}>
 							<h3>Title: {bug.title}</h3>
 							<h4>Decription: {bug.description}</h4>
+							<button onClick={this.onDelete.bind(this, bug._id)}> delete </button>
 						</li>
 					)
 				}
@@ -68,7 +71,7 @@ class Bugs extends React.Component {
 					{ errors.status ? <span>Error: {errors.status}<br/></span> : '' }
 					<br/><input type='text' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
 					{ errors.description ? <span>Error: {errors.description}<br/></span> : '' }
-					<br/><button onClick={this.onSubmit}> Add </button>
+					<br/><button type='submit' onClick={this.onSubmit}> Add </button>
 				</form>
 			</div>
 		)
@@ -81,4 +84,4 @@ const mapStateToProps = state => ({
 	errors: state.errors
 });
 
-export default connect(mapStateToProps, { getBugs,addBug })(Bugs);
+export default connect(mapStateToProps, { getBugs, addBug, deleteBug })(Bugs);

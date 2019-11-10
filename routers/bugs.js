@@ -40,8 +40,10 @@ router.get('/', passport.authenticate('jwt', { session: false }), async (req, re
 // ### + Access = protected    ###
 // ###############################
 // ###############################
-router.post('/', (req,res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), async (req,res) => {
+
 	const { errors, isValid } = verifyBugData(req.body);
+
 	// check the validator output
 	if(!isValid){
 		return res.status(400).json(errors);
@@ -49,11 +51,12 @@ router.post('/', (req,res) => {
 
 	const newBug = new Bug({
 		title: req.body.title,
-		openedBy: req.body.openedBy,
+		openedBy: req.user.id,
 		status: req.body.status,
 		openedOn: Date.now(),
 		description: req.body.description
 	});
+
 	newBug.save()
 		.then(bug => res.json(bug))
 		.catch(err => console.log(err));
@@ -61,5 +64,23 @@ router.post('/', (req,res) => {
 
 
 
+// ###############################
+// ###############################
+// ###   DELTE BUG ENDPOINT    ###
+// ### + Method = DELETE       ###
+// ### + Desc = deleter bug    ###
+// ### + Access = protected    ###
+// ###############################
+// ###############################
+router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+	Bug.findById(req.params.id)
+		.then(bug => {
+			bug.remove()
+				.then(() => res.json({ success: true }))
+		})
+		.catch(err => console.log(err));
+
+})
 
 module.exports = router;
