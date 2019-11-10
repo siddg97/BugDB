@@ -34,16 +34,18 @@ if(localStorage.jwtToken) {
 	}
 }
 
-const { Content,Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 class App extends React.Component {
 	render() {
-		const layoutStyle = {};
-		const baseStyle={ padding:'4vh', background:'#212D40', minHeight:'100vh'};
-		const footerStyle={background:'#11151C',color:'#fff'};
+		const headStyle = {minHeight:'5vh'}
+		const baseStyle={ padding:'4vh', background:'#212D40', minHeight:'85vh'};
+		const footerStyle={background:'#11151C',color:'#fff', minHeight: '10vh'};
 		return (
 		<Provider store={store}>
-			<Layout style={layoutStyle}>
-				<Nav />
+			<Layout>
+				<Header style={headStyle}>
+					<Nav/>
+				</Header>
 				<Content style={baseStyle}>
 					<Row type='flex' align='middle' justify='center'>
 						<Col span={24}>

@@ -59,6 +59,11 @@ class Register extends React.Component {
 				<Col span={14}>
 					<Card bordered={false} bodyStyle={cardStyle}>
 						<Row type='flex' gutter={32} style={rowStyle}>
+							<Col span={2}>
+								<Link to='/'>
+									<Button block type='danger' icon='arrow-left'/>
+								</Link>
+							</Col>
 							<Col span={12}>
 								<Title style={{color:'white'}}level={4}>Sign Up for a free account </Title>
 							</Col>
@@ -88,16 +93,11 @@ class Register extends React.Component {
 									{ errors.password2 ? <Text type='danger'>{errors.password2}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
-								<Col span={8}>
-									<Link to='/'>
-										<Button block type='primary' icon='arrow-left'/>
-									</Link>
-								</Col>
-								<Col span={8}>
+							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
+								<Col span={12}>
 									<Button block onClick={this.onSubmit} style={inputStyle}>Register</Button>
 								</Col>
-								<Col span={8}>
+								<Col span={12}>
 									<center>
 										<Text type='danger'>Already have an account? </Text>
 										<Link to='/login'>

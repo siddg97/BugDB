@@ -6,43 +6,56 @@ const { Title, Text } = Typography;
 
 const uStories = [
 	{
-		icon:<Icon type='bug' style={{color:'red', fontSize:28}}/>,
-		text:'Track multiple bugs for your projects',
-		color:'red'
-	},
-	{
-		icon:<Icon type='sort-ascending' style={{color:'green', fontSize:28}}/>,
-		text:'Assign priorities for each bug you wish to track',
+		icon:<Icon type='bug' style={{color:'green', fontSize:40}}/>,
+		text:'Track bugs',
 		color:'green'
 	},
 	{
-		icon:<Icon type='layout' style={{color:'blue', fontSize:28}} />,
-		text:'Minimalistic UI for optimized tracking experience',
+		icon:<Icon type='sort-ascending' style={{color:'green', fontSize:40}}/>,
+		text:'bug priorities',
+		color:'green'
+	},
+	{
+		icon:<Icon type='layout' style={{color:'blue', fontSize:40}} />,
+		text:'Minimalistic UI',
 		color:'blue'
 	},
 	{
-		icon:<Icon type='cloud-server' style={{color:'blue', fontSize:28}}/>,
-		text:'Centralize your bugs across all your devices',
+		icon:<Icon type='cloud-server' style={{color:'blue', fontSize:40}}/>,
+		text:'Cloud for bugs',
 		color:'blue'
 	},
 	{
-		icon:<Icon type='bar-chart' style={{color:'gray', fontSize: 28}}/>,
-		text:'Analyze your bug squashing performance',
-		color:'gray'
+		icon:<Icon type='bar-chart' style={{color:'red', fontSize: 40}}/>,
+		text:'Bug analytics',
+		color:'red'
+	},
+	{
+		icon:<Icon type='share-alt' style={{color:'red', fontSize: 40}}/>,
+		text:'Share bugs',
+		color:'red'
 	}
 ];
 
 // eslint-disable-next-line
 {/* Title, and welcome content */}
 function Head() {
-	const style={background:'#000', padding:16, color:'#fff'};
+	const style={minHeight:'70vh', background:'#ececec', padding:32};
+	const colStyle = {padding:16}
 	return (
-		<List
-			style={style} 
-			header={<Title style={{color:'#fff'}} level={1}> Start your painless bug tracking experience </Title>}
-			dataSource={uStories}
-			renderItem={story => <Card bordered hoverable title={<Text strong>{story.text}</Text>}>{story.icon}</Card>}
-		/>
+		<div style={style}>
+			<Row type='flex' align='middle' justify='center' gutter={16}>
+			{
+				uStories.map( (item,i) => 
+					<Col key={i} span={12} style={colStyle}>
+						<Card title={<center><Text style={{color:item.color, fontFamily: 'Roboto mono'}}>{item.text}</Text></center>}>
+							<center>{item.icon}</center>
+						</Card>
+					</Col>
+				)
+			}
+			</Row>
+		</div>
 	)
 }
 

@@ -42,7 +42,7 @@ class Nav extends Component {
 		const { user, userLoggedIn } = this.props.auth;
 		return(
 			<div>
-				<Button type='danger' onClick={this.openMenu} icon='menu'/>
+				<Button type='primary' onClick={this.openMenu} icon='menu'/>
 				{userLoggedIn ?
 					<Drawer
 						closable={false}

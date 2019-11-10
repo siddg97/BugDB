@@ -62,8 +62,13 @@ class Login extends React.Component {
 						bodyStyle={cardStyle}
 					>
 						<Row type='flex' gutter={32} style={rowStyle}>
-							<Col span={12}>
-								<Title style={{color:'white'}}level={4}>Log In</Title>
+							<Col span={2}>
+								<Link to='/'>
+										<Button block type='danger' icon='arrow-left'/>
+									</Link>
+							</Col>
+							<Col span={10}>
+								<Title style={{color:'white'}} level={4}>Log In</Title>
 							</Col>
 						</Row>
 						<form onSubmit={this.onSubmit}>
@@ -79,16 +84,11 @@ class Login extends React.Component {
 									{ errors.password ? <Text type='danger'>{errors.password}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
-								<Col span={8}>
-									<Link to='/'>
-										<Button block type='primary' icon='arrow-left'/>
-									</Link>
+							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
+								<Col span={12}>
+									<Button type='danger' block style={inputStyle} block onClick={this.onSubmit}>Login</Button>
 								</Col>
-								<Col span={8}>
-									<Button type='danger' style={inputStyle} block onClick={this.onSubmit}>Login</Button>
-								</Col>
-								<Col span={8}>
+								<Col span={12}>
 									<center>
 										<Text type='danger'> Dont have an account? </Text>
 										<Link to='/register'>
