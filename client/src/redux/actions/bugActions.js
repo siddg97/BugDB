@@ -3,24 +3,34 @@ import {
 	BUG_LOADING,
 	SET_BUGS,
 	GET_ERRORS,
-	CREATE_BUG
+	SET_BUG
 } from './types.js';
 
 // add a bug
 export const addBug = bugData => dispatch => {
 	axios
 		.post('/api/bugs/', bugData)
-		.then(res => dispatch(createBug(res.data)))
+		.then(res => dispatch(setBug(res.data)))
 		.catch(err => {
 			dispatch(getErrors(err));
 		});
 }
 
+// Action creator
+export const setBug = bug => {
+	return {
+		type: SET_BUG,
+		payload: bug
+	};
+}
+
+
+
 // get all bugs
-export const getBugs = userData => dispatch => {
-	const uri = '/api/bugs/'+userData.id;
+export const getBugs = () => dispatch => {
+	dispatch(bugsLoading())
 	axios
-		.get(uri)
+		.get('/api/bugs/')
 		.then(res => dispatch(setBugs(res.data)))
 		.catch(err => dispatch(getErrors(err)));
 }
@@ -33,13 +43,7 @@ export const setBugs = bugs => {
 	};
 }
 
-// Action creator
-export const createBug = bug => {
-	return {
-		type: CREATE_BUG,
-		payload: bug
-	};
-}
+
 
 // Action creator
 export const bugsLoading = () => {
@@ -52,6 +56,6 @@ export const bugsLoading = () => {
 export const getErrors = err => {
 	return {
 		type: GET_ERRORS,
-		payload: err
+		payload: err.response.data
 	};
 }

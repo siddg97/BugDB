@@ -6,16 +6,13 @@
 }
 
 input[type=text], input[type=password] {
-	font-family: 'Roboto Mono', monospace;
-	background-color: #640D14;
-	color: #fff;
-	border: 0;
-	border-radius: 0;
-	font-weight: 500;
 	width: 100%;
-	padding: 16px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 12px 20px;
 }
 
 input[type=text]:focus, input[type=password]:focus {
-	background-color: #002766;
+	background:
 }

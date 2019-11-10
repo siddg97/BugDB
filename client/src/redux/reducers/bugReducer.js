@@ -1,4 +1,4 @@
-import { SET_BUGS, BUG_LOADING, CREATE_BUG } from '../actions/types.js';
+import { SET_BUGS, BUG_LOADING, SET_BUG } from '../actions/types.js';
 
 const initialState = {
 	bugList: [],
@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
 				...state,
 				loading: true
 			};
-		case CREATE_BUG:
+		case SET_BUG:
 			return {
 				...state,
 				bugList: [...state.bugList, action.payload]

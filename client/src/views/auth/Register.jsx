@@ -52,7 +52,7 @@ class Register extends React.Component {
 	render() {
 		const { name, email, password, password2, errors } = this.state;
 		const rowStyle={padding:16}
-		const cardStyle={background:'#141414'}
+		const cardStyle={background:'#ececec'}
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
 				<Col span={14}>
@@ -64,7 +64,7 @@ class Register extends React.Component {
 								</Link>
 							</Col>
 							<Col span={12}>
-								<Title style={{color:'white'}}level={4}>Sign Up for a free account </Title>
+								<Title level={4}>Sign Up for a free account </Title>
 							</Col>
 						</Row>
 						<form onSubmit={this.onSubmit}>
@@ -92,10 +92,12 @@ class Register extends React.Component {
 									{ errors.password2 ? <Text type='danger'>{errors.password2}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
-								<Col span={12}>
+							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
+								<Col span={11}>
 									<Button type='danger' block onClick={this.onSubmit}>Register</Button>
 								</Col>
+							</Row>
+							<Row type='flex' justify='center' align='middle'>
 								<Col span={12}>
 									<center>
 										<Text type='danger'>Already have an account? </Text>

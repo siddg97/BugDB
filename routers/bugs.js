@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const passport = require('passport');
 
 // Initialize router
 const router = express.Router();
@@ -10,6 +11,25 @@ const verifyBugData = require('../validators/bug.js');
 
 // load Bug model
 const Bug = require('../models/bug.js');
+
+
+
+// ###############################
+// ###############################
+// ###    GET BUGS ENDPOINT    ###
+// ### + Method = GET          ###
+// ### + Desc = get all bugs   ###
+// ### + Access = protected    ###
+// ###############################
+// ###############################
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+	await Bug.find({openedBy:req.user.id})
+		.then(bugs => res.send(bugs))
+		.catch(err => {
+			console.log(err)
+		});
+});
+
 
 
 // ###############################
@@ -26,6 +46,7 @@ router.post('/', (req,res) => {
 	if(!isValid){
 		return res.status(400).json(errors);
 	}
+
 	const newBug = new Bug({
 		title: req.body.title,
 		openedBy: req.body.openedBy,
@@ -39,21 +60,6 @@ router.post('/', (req,res) => {
 })
 
 
-// ###############################
-// ###############################
-// ###    GET BUGS ENDPOINT    ###
-// ### + Method = GET          ###
-// ### + Desc = get all bugs   ###
-// ### + Access = protected    ###
-// ###############################
-// ###############################
-router.get('/:uid', (req, res) => {
-	Bug.find({openedBy:req.params.uid})
-		.then(bugs => res.send(bugs))
-		.catch(err => {
-			res.status((404)).json(err);
-			console.log(err)
-		});
-});
+
 
 module.exports = router;

@@ -14,9 +14,6 @@ class Bugs extends React.Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.auth.userLoggedIn){
-			this.props.history.push('/login')
-		}
 		const userData = { id: this.props.auth.user.id };
 		this.props.getBugs(userData);
 	}
@@ -43,7 +40,7 @@ class Bugs extends React.Component {
 			openedOn: Date.now(),
 			description: description
 		};
-		this.props.addBug(newBug, this.props.history);
+		this.props.addBug(newBug);
 	}
 
 	render() {
@@ -66,8 +63,11 @@ class Bugs extends React.Component {
 				</ul>
 				<form onSubmit={this.onSubmit}>
 					<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
+					{ errors.title ? <span>Error: {errors.title}<br/></span> : '' }
 					<br/><input type='text' placeholder='Enter status...' id='status' value={status} onChange={this.onChange} />
+					{ errors.status ? <span>Error: {errors.status}<br/></span> : '' }
 					<br/><input type='text' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
+					{ errors.description ? <span>Error: {errors.description}<br/></span> : '' }
 					<br/><button onClick={this.onSubmit}> Add </button>
 				</form>
 			</div>

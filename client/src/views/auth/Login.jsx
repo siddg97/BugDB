@@ -52,7 +52,7 @@ class Login extends React.Component {
 		const { email, password, errors } = this.state;
 		const rowStyle={padding:16}
 		const colStyle={padding:16}
-		const cardStyle={background:'#141414'}
+		const cardStyle={background:'#ececec'}
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
 				<Col span={14} style={colStyle}>
@@ -60,14 +60,14 @@ class Login extends React.Component {
 						bordered={false}
 						bodyStyle={cardStyle}
 					>
-						<Row type='flex' gutter={32} style={rowStyle}>
+						<Row type='flex' justify='start' align='middle' gutter={32} style={rowStyle}>
 							<Col span={2}>
 								<Link to='/'>
 										<Button block type='link' icon='arrow-left'/>
 									</Link>
 							</Col>
 							<Col span={10}>
-								<Title style={{color:'white'}} level={4}>Log In</Title>
+								<Title level={4}>Log In</Title>
 							</Col>
 						</Row>
 						<form onSubmit={this.onSubmit}>
@@ -83,10 +83,12 @@ class Login extends React.Component {
 									{ errors.password ? <Text type='danger'>{errors.password}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
-								<Col span={12}>
+							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
+								<Col span={11}>
 									<Button type='primary' block onClick={this.onSubmit}>Login</Button>
 								</Col>
+							</Row>
+							<Row type='flex' justify='center' align='middle'>
 								<Col span={12}>
 									<center>
 										<Text type='danger'> Dont have an account? </Text>
