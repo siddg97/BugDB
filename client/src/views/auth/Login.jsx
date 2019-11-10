@@ -53,7 +53,6 @@ class Login extends React.Component {
 		const rowStyle={padding:16}
 		const colStyle={padding:16}
 		const cardStyle={background:'#141414'}
-		const inputStyle={backgroundColor:'#640D14',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
 				<Col span={14} style={colStyle}>
@@ -86,7 +85,7 @@ class Login extends React.Component {
 							</Row>
 							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
 								<Col span={12}>
-									<Button type='danger' block style={inputStyle} onClick={this.onSubmit}>Login</Button>
+									<Button type='primary' block onClick={this.onSubmit}>Login</Button>
 								</Col>
 								<Col span={12}>
 									<center>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, Divider, Typography, Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const { Text } = Typography;
 
@@ -87,6 +88,12 @@ function Body() {
 }
 
 class Landing extends React.Component {
+	componentDidMount() {
+		if(this.props.auth.userLoggedIn){
+			this.props.history.push('/home');
+		}
+	}
+
 	render() {
 		const wrapperStyle = {padding:32};
 		return (
@@ -102,4 +109,8 @@ class Landing extends React.Component {
 	}
 }
 
-export default Landing
+const mapStateToProps = state => ({
+	auth:state.auth
+});
+
+export default connect(mapStateToProps)(Landing);

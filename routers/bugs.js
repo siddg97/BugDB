@@ -33,9 +33,9 @@ router.post('/', (req,res) => {
 		openedOn: Date.now(),
 		description: req.body.description
 	});
-	newBug
-		.save()
-		.then(bug => res.json(bug))
+	newBug.save()
+	Bug.find({openedBy: req.body.openedBy})
+		.then(bugs => res.send(bugs))
 		.catch(err => console.log(err));
 })
 

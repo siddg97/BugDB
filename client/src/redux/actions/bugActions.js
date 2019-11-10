@@ -6,10 +6,10 @@ import {
 } from './types.js';
 
 // add a bug
-export const addBugs = (bugData,history) => dispatch => {
+export const addBug = bugData => dispatch => {
 	axios
 		.post('/api/bugs/', bugData)
-		.then(res => history.push('/bugs'))
+		.then(res => dispatch(setBugs(res.data)))
 		.catch(err => {
 			dispatch(getErrors(err));
 		});

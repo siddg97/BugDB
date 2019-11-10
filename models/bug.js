@@ -13,7 +13,8 @@ const BugSchema = new scheme({
 		type: String
 	},
 	openedOn: {
-		type: Date
+		type: Date,
+		defualt:Date.now
 	},
 	description: {
 		type: String

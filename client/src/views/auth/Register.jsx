@@ -21,7 +21,7 @@ class Register extends React.Component {
 
 	componentDidMount() {
 		if (this.props.auth.userLoggedIn){
-			this.props.history.push('/app')
+			this.props.history.push('/home')
 		}
 	}
 
@@ -53,7 +53,6 @@ class Register extends React.Component {
 		const { name, email, password, password2, errors } = this.state;
 		const rowStyle={padding:16}
 		const cardStyle={background:'#141414'}
-		const inputStyle={backgroundColor:'#640D14',color:'white',border:0,borderRadius:0, fontWeight:500, fontFamily:'Roboto Mono'}
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
 				<Col span={14}>
@@ -95,7 +94,7 @@ class Register extends React.Component {
 							</Row>
 							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
 								<Col span={12}>
-									<Button block onClick={this.onSubmit} style={inputStyle}>Register</Button>
+									<Button type='danger' block onClick={this.onSubmit}>Register</Button>
 								</Col>
 								<Col span={12}>
 									<center>
