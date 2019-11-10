@@ -50,9 +50,9 @@ router.post('/', (req,res) => {
 // ###############################
 router.get('/:uid', (req, res) => {
 	Bug.find({openedBy:req.params.uid})
-		.then(bugs => res.json(bugs))
+		.then(bugs => res.send(bugs))
 		.catch(err => {
-			res.status((404));
+			res.status((404)).json(err);
 			console.log(err)
 		});
 });

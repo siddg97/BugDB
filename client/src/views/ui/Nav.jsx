@@ -9,10 +9,8 @@ import { userLogout } from '../../redux/actions/authActions.js';
 class Nav extends Component {
 	constructor(){
 		super();
-		let path = window.location.pathname;
 		this.state = {
 			visible: false,
-			selected:[path]
 		};
 	}
 
@@ -51,11 +49,11 @@ class Nav extends Component {
 						onClose={this.closeMenu}
 						width={150}
 					>
-						<Menu 
-							theme='dark' 
-							mode='inline' 
-							style={{minHeight:'100vh'}} 
-							selectedKeys={this.state.selected}
+						<Menu
+							theme='dark'
+							mode='inline'
+							style={{minHeight:'100vh'}}
+							selectedKeys={[window.location.pathname]}
 						>
 							<Menu.Item key='/home' style={mItemStyle} onClick={this.handleMenuClick}>
 								<Link to='/home'>
@@ -88,10 +86,10 @@ class Nav extends Component {
 						onClose={this.closeMenu}
 						width={150}
 					>
-						<Menu 
-							theme='dark' 
-							mode='inline' 
-							style={{minHeight:'100vh'}} 
+						<Menu
+							theme='dark'
+							mode='inline'
+							style={{minHeight:'100vh'}}
 							selectedKeys={this.state.selected}
 						>
 							<Menu.Item key='/login' style={mItemStyle} onClick={this.handleMenuClick}>

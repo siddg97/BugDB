@@ -61,7 +61,7 @@ class Register extends React.Component {
 						<Row type='flex' gutter={32} style={rowStyle}>
 							<Col span={2}>
 								<Link to='/'>
-									<Button block type='danger' icon='arrow-left'/>
+									<Button block type='link' icon='arrow-left'/>
 								</Link>
 							</Col>
 							<Col span={12}>

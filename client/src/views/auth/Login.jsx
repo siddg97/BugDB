@@ -17,7 +17,7 @@ class Login extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.auth.userLoggedIn){
+		if (this.props.auth.userLoggedIn) {
 			this.props.history.push('/home')
 		}
 	}
@@ -57,14 +57,14 @@ class Login extends React.Component {
 		return (
 			<Row type='flex' align='middle' justify='center' style={{height:'90vh'}}>
 				<Col span={14} style={colStyle}>
-					<Card 
-						bordered={false} 
+					<Card
+						bordered={false}
 						bodyStyle={cardStyle}
 					>
 						<Row type='flex' gutter={32} style={rowStyle}>
 							<Col span={2}>
 								<Link to='/'>
-										<Button block type='danger' icon='arrow-left'/>
+										<Button block type='link' icon='arrow-left'/>
 									</Link>
 							</Col>
 							<Col span={10}>
@@ -86,7 +86,7 @@ class Login extends React.Component {
 							</Row>
 							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
 								<Col span={12}>
-									<Button type='danger' block style={inputStyle} block onClick={this.onSubmit}>Login</Button>
+									<Button type='danger' block style={inputStyle} onClick={this.onSubmit}>Login</Button>
 								</Col>
 								<Col span={12}>
 									<center>

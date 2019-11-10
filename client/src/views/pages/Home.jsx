@@ -6,9 +6,9 @@ class Home extends React.Component {
 	render() {
 		const { user } = this.props.auth;
 		return (
-			<div style={{background:'#fff'}}> 
+			<div style={{background:'#fff', padding:32}}>
 				<h1>HOME PAGE</h1>
-				<h2> Welcome {user.name}</h2>
+				<h2> Welcome <b>{user.name}</b></h2>
 				<h3> UID: {'  ' + user.id}</h3>
 			</div>
 		);

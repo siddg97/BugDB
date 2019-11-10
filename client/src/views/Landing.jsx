@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Card, Divider, Typography, Row, Col, List, Icon } from 'antd';
+import { Button, Card, Divider, Typography, Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const uStories = [
 	{
@@ -46,7 +46,7 @@ function Head() {
 		<div style={style}>
 			<Row type='flex' align='middle' justify='center' gutter={16}>
 			{
-				uStories.map( (item,i) => 
+				uStories.map( (item,i) =>
 					<Col key={i} span={12} style={colStyle}>
 						<Card title={<center><Text style={{color:item.color, fontFamily: 'Roboto mono'}}>{item.text}</Text></center>}>
 							<center>{item.icon}</center>
@@ -67,9 +67,9 @@ function Body() {
 		<Row type='flex' gutter={32} justify='center' align='middle'>
 			<Col span={24} style={colStyle}>
 				<Link to='/login'>
-					<Button block icon='login' type='primary'> 
+					<Button block icon='login' type='primary'>
 						Login
-					</Button> 
+					</Button>
 				</Link>
 			</Col>
 			<Col span={24}>

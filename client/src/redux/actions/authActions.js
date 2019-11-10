@@ -11,7 +11,7 @@ import {
 // Register user
 export const registerUser = (userData,history) => dispatch => {
 	axios
-		.post('http://localhost:5000/api/user/register',userData)
+		.post('/api/user/register',userData)
 		.then(res => history.push('/login'))
 		.catch(err => {
 			dispatch(getErrors(err));
@@ -21,7 +21,7 @@ export const registerUser = (userData,history) => dispatch => {
 // Login user
 export const loginUser = userData => dispatch => {
 	axios
-		.post('http://localhost:5000/api/user/login',userData)
+		.post('/api/user/login',userData)
 		.then(res => {
 			const { token } = res.data;
 			localStorage.setItem('jwtToken', token);
@@ -34,7 +34,14 @@ export const loginUser = userData => dispatch => {
 		});
 }
 
-// Action creator: 
+// user logout
+export const userLogout = () => dispatch => {
+	localStorage.removeItem('jwtToken');
+	setAuthToken(false);
+	dispatch(setUser({}));
+};
+
+// Action creator:
 export const setUser = decoded => {
 	return {
 		type: SET_USER,
@@ -42,18 +49,11 @@ export const setUser = decoded => {
 	};
 };
 
-// Action creator: 
+// Action creator:
 export const userLoading = () => {
 	return {
 		type: USER_LOADING
 	};
-};
-
-// Action creator
-export const userLogout = () => dispatch => {
-	localStorage.removeItem('jwtToken');
-	setAuthToken(false);
-	dispatch(setUser({}));
 };
 
 // Action creator

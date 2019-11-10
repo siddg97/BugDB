@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "client-i": "yarn install --prefix client",
+    "client-i": "cd client && yarn install && cd .. --prefix client",
     "start": "yarn free-port && node index.js",
     "server": "yarn free-port && nodemon index.js",
     "client": "cd client && yarn start --prefix client",
