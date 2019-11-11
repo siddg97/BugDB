@@ -28,6 +28,7 @@ var accessLogStream = rfs('server.log', {			// ++--> create a rotating file stre
 	interval:'1d',
 	path: logDir
 });
+
 morgan.token('req-body', (req,res) => {return JSON.stringify(req.body)}); 	// create token for request body and response
 const logformat = '\n:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" \nREQUEST BODY=":req-body"\n';
 //=====================[END]============================

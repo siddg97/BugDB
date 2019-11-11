@@ -4,13 +4,13 @@ import {
 	SET_BUGS,
 	SET_BUG,
 	DELETE_BUG,
+	UPDATE_BUG,
 	GET_ERRORS
 } from './types.js';
 
 
 // add a bug
 export const addBug = bugData => dispatch => {
-	dispatch(bugsLoading());
 	axios
 		.post('/api/bugs/', bugData)
 		.then(res => dispatch(setBug(res.data)))
@@ -66,6 +66,15 @@ export const removeBug = id => {
 
 
 
+// Update bug
+export const updateBug = bugData => dispatch => {
+	axios
+		.post('/api/bugs/update', bugData)
+		.then(res => dispatch({ type:UPDATE_BUG, payload: res.data }))
+		.catch(err => console.log(err))
+}
+
+
 // Action creator
 export const bugsLoading = () => {
 	return {
@@ -77,6 +86,6 @@ export const bugsLoading = () => {
 const getErrors = err => {
 	return {
 		type:GET_ERRORS,
-		payload: err.response.data ? err.response.data : ''
+		payload: err.response.data ? err.response.data : {}
 	}
 }

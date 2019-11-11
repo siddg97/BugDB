@@ -83,4 +83,25 @@ router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (
 
 })
 
+
+// ###############################
+// ###############################
+// ###   UPDATE BUG ENDPOINT   ###
+// ### + Method = POST         ###
+// ### + Desc = update bug     ###
+// ### + Access = protected    ###
+// ###############################
+// ###############################
+router.post('/update', passport.authenticate('jwt', { session: false }), (req,res) => {
+	let bugfields = {};
+	bugfields.title = req.body.title;
+	bugfields.status = req.body.status;
+	bugfields.description = req.body.description;
+
+	Bug.findOneAndUpdate({ _id: req.body.id }, { $set: bugfields }, { new: true, useFindAndModify: false })
+		.then(bug => res.json(bug))
+		.catch(err => console.log(err));
+});
+
+
 module.exports = router;

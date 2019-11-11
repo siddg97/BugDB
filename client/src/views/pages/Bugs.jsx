@@ -8,22 +8,13 @@ class Bugs extends React.Component {
 		this.state = {
 			title: '',
 			status: '',
-			description: '',
-			errors: {}
+			description: ''
 		}
 	}
 
 	componentDidMount() {
 		const userData = { id: this.props.auth.user.id };
 		this.props.getBugs(userData);
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if(nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors
-			});
-		}
 	}
 
 	onChange = e => {
@@ -48,7 +39,8 @@ class Bugs extends React.Component {
 	render() {
 		const { user } = this.props.auth;
 		const { bugList } = this.props.bugs;
-		const { title, status, description, errors } = this.state;
+		const { title, status, description } = this.state;
+		const { errors } = this.props;
 		return (
 			<div style={{background:'#fff', padding:32}}>
 				<h1>BUGS PAGE</h1>
