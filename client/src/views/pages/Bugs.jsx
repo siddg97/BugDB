@@ -41,7 +41,7 @@ class Bugs extends React.Component {
 	onSubmit = e => {
 		e.preventDefault();
 		const { title, status, description } = this.state;
-		if(title!=='' && status!=='' && description!==''){
+		if(title!=='' && status!=='' && description!==''){ // no errors
 			const newBug = {
 				title: title,
 				status: status,
@@ -50,7 +50,7 @@ class Bugs extends React.Component {
 			this.props.addBug(newBug);
 			this.closeDrawer();
 			this.resetForm();
-		} else {
+		} else { 	// errors
 			let err = {}
 			if(isEmpty(title)){
 				err.title = 'Title is a required field'
@@ -100,8 +100,9 @@ class Bugs extends React.Component {
 					bugList.map((bug, i) =>
 						<li key={i}>
 							<h2>Title: {bug.title}</h2>
-							<h4>Decription: {bug.description}</h4>
+							<h3>Decription: {bug.description}</h3>
 							<h3>STATUS: <b>{bug.status}</b></h3>
+							<h3>Date opened: <b>{new Date(bug.openedOn).toDateString()}</b></h3>
 							<button onClick={this.onDelete.bind(this, bug._id)}> delete </button>
 						</li>
 					)

@@ -4,8 +4,7 @@ import {
 	SET_BUGS,
 	SET_BUG,
 	DELETE_BUG,
-	UPDATE_BUG,
-	GET_ERRORS
+	UPDATE_BUG
 } from './types.js';
 
 
@@ -14,9 +13,7 @@ export const addBug = bugData => dispatch => {
 	axios
 		.post('/api/bugs/', bugData)
 		.then(res => dispatch(setBug(res.data)))
-		.catch(err => {
-				dispatch(getErrors(err))
-		})
+		.catch(err => console.log(err))
 }
 
 // Action creator
@@ -33,7 +30,7 @@ export const getBugs = () => dispatch => {
 	axios
 		.get('/api/bugs/')
 		.then(res => dispatch(setBugs(res.data)))
-		.catch(err => dispatch(getErrors(err)));
+		.catch(err => console.log(err));
 }
 
 // Action creator
@@ -51,7 +48,7 @@ export const deleteBug = id => dispatch => {
 	axios
 		.delete('/api/bugs/delete/'+id)
 		.then(res => dispatch(removeBug(id)))
-		.catch(err => dispatch(getErrors(err)));
+		.catch(err => console.log(err));
 }
 
 // Action creator
@@ -78,12 +75,4 @@ export const bugsLoading = () => {
 	return {
 		type: BUG_LOADING
 	};
-}
-
-// Action creator
-const getErrors = err => {
-	return {
-		type:GET_ERRORS,
-		payload: err.response.data
-	}
 }
