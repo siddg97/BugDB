@@ -67,21 +67,25 @@ function Body() {
 	return (
 		<Row type='flex' gutter={32} justify='center' align='middle'>
 			<Col span={24} style={colStyle}>
-				<Link to='/login'>
-					<Button block icon='login' type='primary'>
-						Login
-					</Button>
-				</Link>
+				<center>
+					<Link to='/login'>
+						<Button block size='large' type='primary'>
+							Login
+						</Button>
+					</Link>
+				</center>
 			</Col>
 			<Col span={24}>
 				<Divider style={{color:'#fff'}}> OR </Divider>
 			</Col>
 			<Col span={24} style={colStyle}>
-				<Link to='/register'>
-					<Button block icon='user-add' type='danger'>
-						Register
-					</Button>
-				</Link>
+				<center>
+					<Link to='/register'>
+						<Button block size='large' type='danger'>
+							Register
+						</Button>
+					</Link>
+				</center>
 			</Col>
 		</Row>
 	)

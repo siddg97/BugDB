@@ -65,7 +65,7 @@ export const removeBug = id => {
 export const updateBug = bugData => dispatch => {
 	axios
 		.post('/api/bugs/update', bugData)
-		.then(res => dispatch({ type:UPDATE_BUG, payload: res.data }))
+		.then(res => dispatch({ type: UPDATE_BUG, payload: res.data }))
 		.catch(err => console.log(err))
 }
 

@@ -1,38 +1,46 @@
 import React from 'react';
+import { updateBug } from '../../../redux/actions/bugActions.js';
 import { connect } from 'react-redux';
-import { addBug } from '../../redux/actions/bugActions.js';
 import isEmpty from 'is-empty';
 
-import { Drawer, Button, Icon, Row, Col, Typography, notification } from 'antd';
-import BugGrid from './comps/BugGrid.jsx';
+import { Row, Col, Button, Icon, Drawer, Typography, notification } from 'antd';
 
 const { Title, Text } = Typography;
 
-class Bugs extends React.Component {
-	constructor() {
-		super();
+class EditBug extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
-			title: '',
-			status: '',
-			description: '',
-			drawer: false,
+			drawer:false,
+			title: this.props.bug.title,
+			status: this.props.bug.status,
+			description: this.props.bug.description,
 			errors: {}
-		}
+		};
 	}
 
-	// reset the add bug form fields
+	// open drawer form
+	openUpdate = () => {
+		this.setState({
+			drawer: true
+		});
+	}
+
+	// close drawer form
+	closeUpdate = () => {
+		this.setState({
+			drawer: false
+		});
+	}
+
+	// reset form to default
 	resetForm = () => {
 		this.setState({
-			title: '',
-			status: '',
-			description: '',
+			title: this.state.title,
+			status: this.state.status,
+			description: this.state.description,
 			errors: {}
-		})
-	}
-
-	// handle input field changes
-	onChange = e => {
-		this.setState({ [e.target.id]: e.target.value });
+		});
 	}
 
 	// send notification of 'type' with title as 'msg' and info as 'desc'
@@ -43,21 +51,29 @@ class Bugs extends React.Component {
 		});
 	}
 
-	// check for errors and dispatch add bug action
+	// handle input change
+	onChange = e => {
+		this.setState({ [e.target.id]: e.target.value });
+	}
+
+	// submit data or show errors
 	onSubmit = e => {
 		e.preventDefault();
 		const { title, status, description } = this.state;
+
 		if(title!=='' && status!=='' && description!==''){ // no errors
-			const newBug = {
+			const updatedBug = {
+				id: this.props.bug._id,
 				title: title,
 				status: status,
 				description: description
 			};
-			this.props.addBug(newBug);
-			this.closeDrawer();
+
+			this.props.updateBug(updatedBug);
+			this.closeUpdate();
 			this.resetForm();
-			this.onNotify('success','Opened','Successfully opened a new bug');
-		} else { 	// errors
+			this.onNotify('success','Updated','Successfully updated the bug')
+		} else {
 			let err = {}
 			if(isEmpty(title)){
 				err.title = 'Title is a required field'
@@ -71,34 +87,19 @@ class Bugs extends React.Component {
 			this.setState({
 				errors: err
 			});
-			this.onNotify('error','Error','Please validate incorrect fields');
+			this.onNotify('error','Failed','Please validate fields and try again')
 		}
 	}
 
-	// open addbug form
-	openDrawer = () => {
-		this.setState( {drawer: true} );
-	}
-
-	// close addbug form
-	closeDrawer = () => {
-		this.setState({ drawer: false	});
-	}
-
-
-
-	render() {
-		const { user } = this.props.auth;
-		const { title, status, description, errors } = this.state;
-		const colStyle = {padding:16}
+	render(props) {
+		const { title, status, description , errors } = this.state;
+		const colStyle = { padding:16 };
 		return (
-			<div style={{background:'#fff', padding:32}}>
-				<h2> Bugs Opened by <b>{user.name}</b> : </h2>
-				<BugGrid />
-				<center><Button type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
+			<div>
+				<Button type='primary' block size='small' onClick={this.openUpdate}><Icon type="edit" /></Button>
 				<Drawer
 					visible={this.state.drawer}
-					onClose={this.closeDrawer}
+					onClose={this.closeUpdate}
 					width={'100vw'}
 				>
 					<form onSubmit={this.onSubmit}>
@@ -106,7 +107,7 @@ class Bugs extends React.Component {
 							<Col span={16} style={colStyle}>
 								<Row type='flex' align='top' justify='start'>
 									<Col span={24} style={colStyle}>
-										<Title level={3}>Open a new bug</Title>
+										<Title level={3}>Edit bug</Title>
 									</Col>
 									<Col span={12} style={colStyle}>
 										<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
@@ -121,7 +122,7 @@ class Bugs extends React.Component {
 										{ errors.description ? <Text type='danger'>{errors.description}</Text> : '' }
 									</Col>
 									<Col span={4} style={colStyle}>
-										<Button type='primary' block onClick={this.onSubmit}> Open </Button>
+										<Button type='primary' block onClick={this.onSubmit}> Update </Button>
 									</Col>
 									<Col span={4} style={colStyle}>
 										<Button type='danger' block onClick={this.resetForm}> Reset </Button>
@@ -136,9 +137,8 @@ class Bugs extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	auth: state.auth,
-	bugs: state.bugs
-});
+const mapStateToProps = state => {
+	return {}
+}
 
-export default connect(mapStateToProps, { addBug })(Bugs);
+export default connect(mapStateToProps, { updateBug })(EditBug);

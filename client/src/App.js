@@ -38,7 +38,7 @@ const { Header, Content, Footer } = Layout;
 class App extends React.Component {
 	render() {
 		const headStyle = {minHeight:'5vh'}
-		const baseStyle={ padding:'7vh',background:'#212D40', minHeight:'85vh'};
+		const baseStyle={ padding:'3vh',background:'#212D40', minHeight:'85vh'};
 		const footerStyle={background:'#11151C',color:'#fff', minHeight: '10vh'};
 		return (
 		<Provider store={store}>

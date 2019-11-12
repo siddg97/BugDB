@@ -1,10 +1,11 @@
 import React from 'react';
-import { getBugs, deleteBug, updateBug } from '../../../redux/actions/bugActions.js';
+import { getBugs, deleteBug } from '../../../redux/actions/bugActions.js';
 import { connect } from 'react-redux';
 
 import { Row, Col, Card, Button, Icon, Typography, notification } from 'antd';
+import EditBug from './EditBug.jsx';
 
-const { Text, Title, Paragraph } = Typography;
+const { Text, Title } = Typography;
 
 class BugGrid extends React.Component {
 	componentDidMount() {
@@ -34,10 +35,26 @@ class BugGrid extends React.Component {
 				this.props.bugs.bugList.map((bug,i) =>
 					<Col key={i} span={8} style={colStyle}>
 						<Card hoverable bordered bodyStyle={cardStyle}>
-							<Title level={3}>{bug.title}</Title>
-							<Text type='danger'>{bug.status}</Text><br/>
-							<Text>Opened on: <Text strong>{bug.openedOn.date.day}/{bug.openedOn.date.month}/{bug.openedOn.date.year}</Text></Text><br/>
-							<Button type='danger' size='small' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button>
+							<Row type='flex' align='top' justify='start'>
+								<Col span={24} style={colStyle}>
+									<Title level={3}>{bug.title}</Title>
+								</Col>
+								<Col span={24} style={colStyle}>
+									<Text strong> STATUS: <Text type='danger'>{bug.status}</Text></Text>
+								</Col>
+								<Col span={24} style={colStyle}>
+									<Text strong>OPENED ON: <Text>{bug.openedOn.date.day}/{bug.openedOn.date.month}/{bug.openedOn.date.year}</Text></Text>
+								</Col>
+								<Col span={8} style={colStyle}>
+									<EditBug bug={bug} />
+								</Col>
+								<Col span={8} style={colStyle}>
+									<center><Button block type='link' size='small'>Info</Button></center>
+								</Col>
+								<Col span={8} style={colStyle}>
+									<Button block type='danger' size='small' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button>
+								</Col>
+							</Row>
 						</Card>
 					</Col>
 				)
@@ -54,4 +71,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { getBugs, deleteBug, updateBug })(BugGrid);
+export default connect(mapStateToProps, { getBugs, deleteBug })(BugGrid);

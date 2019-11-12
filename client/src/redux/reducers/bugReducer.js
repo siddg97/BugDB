@@ -28,11 +28,11 @@ export default function(state = initialState, action) {
 			};
 
 		case UPDATE_BUG:
-			let index = state.bugs.findIndex(bug => bug._id === action.payload._id)
-			state.bugs.splice(index,1);
+			let index = state.bugList.findIndex(bug => bug._id === action.payload._id)
+			state.bugList.splice(index,1, action.payload)
 			return {
 				...state,
-				bugList: [...state.tasks, action.payload]
+				bugList: [...state.bugList]
 			};
 
 		case DELETE_BUG:
