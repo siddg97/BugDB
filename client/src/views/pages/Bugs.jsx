@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getBugs, addBug, deleteBug } from '../../redux/actions/bugActions.js';
+import { addBug } from '../../redux/actions/bugActions.js';
 import isEmpty from 'is-empty';
 
-import { Drawer, Button, Icon, Row, Col, Typography } from 'antd';
+import { Drawer, Button, Icon, Row, Col, Typography, notification } from 'antd';
+import BugGrid from './comps/BugGrid.jsx';
 
 const { Title, Text } = Typography;
 
@@ -19,12 +20,7 @@ class Bugs extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
-		if(nextProps.errors){
-			this.setState({errors: nextProps.errors})
-		}
-	}
-
+	// reset the add bug form fields
 	resetForm = () => {
 		this.setState({
 			title: '',
@@ -34,10 +30,20 @@ class Bugs extends React.Component {
 		})
 	}
 
+	// handle input field changes
 	onChange = e => {
 		this.setState({ [e.target.id]: e.target.value });
 	}
 
+	// send notification of 'type' with title as 'msg' and info as 'desc'
+	onNotify = (type,msg,desc) => {
+		notification[type]({
+			message: msg,
+			description: desc
+		});
+	}
+
+	// check for errors and dispatch add bug action
 	onSubmit = e => {
 		e.preventDefault();
 		const { title, status, description } = this.state;
@@ -50,6 +56,7 @@ class Bugs extends React.Component {
 			this.props.addBug(newBug);
 			this.closeDrawer();
 			this.resetForm();
+			this.onNotify('success','Success','You have pened a new bug','success-notification');
 		} else { 	// errors
 			let err = {}
 			if(isEmpty(title)){
@@ -64,51 +71,31 @@ class Bugs extends React.Component {
 			this.setState({
 				errors: err
 			});
+			this.onNotify('error','Error','Please validate incorrect fields');
 		}
-
 	}
 
+	// open addbug form
 	openDrawer = () => {
 		this.setState( {drawer: true} );
 	}
 
+	// close addbug form
 	closeDrawer = () => {
 		this.setState({ drawer: false	});
 	}
 
-	componentDidMount() {
-		const userData = { id: this.props.auth.user.id };
-		this.props.getBugs(userData);
-	}
 
-	onDelete = id => {
-		this.props.deleteBug(id);
-	}
 
 	render() {
 		const { user } = this.props.auth;
-		const { bugList } = this.props.bugs;
 		const { title, status, description, errors } = this.state;
-		const rowStyle = {padding:16}
 		const colStyle = {padding:16}
 		return (
 			<div style={{background:'#fff', padding:32}}>
-				<h1>BUGS PAGE</h1>
 				<h2> Bugs Opened by <b>{user.name}</b> : </h2>
-				<ul>
-				{
-					bugList.map((bug, i) =>
-						<li key={i}>
-							<h2>Title: {bug.title}</h2>
-							<h3>Decription: {bug.description}</h3>
-							<h3>STATUS: <b>{bug.status}</b></h3>
-							<h3>Date opened: <b>{bug.openedOn}</b></h3>
-							<button onClick={this.onDelete.bind(this, bug._id)}> delete </button>
-						</li>
-					)
-				}
-				</ul>
-				<Button type='primary' onClick={this.openDrawer}><Icon type='plus' size='large'/> New bug</Button>
+				<BugGrid />
+				<center><Button type='primary' onClick={this.openDrawer}><Icon type='plus' size='large'/> New bug</Button></center>
 				<Drawer
 					visible={this.state.drawer}
 					onClose={this.closeDrawer}
@@ -116,7 +103,7 @@ class Bugs extends React.Component {
 					getContainer={false}
 				>
 					<form onSubmit={this.onSubmit}>
-						<Row type='flex' align='top' justify='center' style={rowStyle}>
+						<Row type='flex' align='top' justify='center'>
 							<Col span={16} style={colStyle}>
 								<Row type='flex' align='top' justify='start'>
 									<Col span={24} style={colStyle}>
@@ -155,4 +142,4 @@ const mapStateToProps = state => ({
 	bugs: state.bugs
 });
 
-export default connect(mapStateToProps, { getBugs, addBug, deleteBug })(Bugs);
+export default connect(mapStateToProps, { addBug })(Bugs);

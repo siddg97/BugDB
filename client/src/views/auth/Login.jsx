@@ -83,17 +83,15 @@ class Login extends React.Component {
 									{ errors.password ? <Text type='danger'>{errors.password}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
-								<Col span={11}>
-									<Button type='primary' block onClick={this.onSubmit}>Login</Button>
+							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
+								<Col span={8}>
+									<Button type='primary' block size='large' onClick={this.onSubmit}>Login</Button>
 								</Col>
-							</Row>
-							<Row type='flex' justify='center' align='middle'>
-								<Col span={12}>
+								<Col span={16}>
 									<center>
 										<Text type='danger'> Dont have an account? </Text>
 										<Link to='/register'>
-											<Button type='link'>Sign Up</Button>
+											<Button type='link' size='large'>Sign Up</Button>
 										</Link>
 									</center>
 								</Col>

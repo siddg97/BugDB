@@ -92,17 +92,15 @@ class Register extends React.Component {
 									{ errors.password2 ? <Text type='danger'>{errors.password2}</Text> : '' }
 								</Col>
 							</Row>
-							<Row type='flex' gutter={32} justify='center' align='middle' style={rowStyle}>
-								<Col span={11}>
-									<Button type='danger' block onClick={this.onSubmit}>Register</Button>
+							<Row type='flex' gutter={32} justify='start' align='middle' style={rowStyle}>
+								<Col span={8}>
+									<Button type='danger' size='large' block onClick={this.onSubmit}>Register</Button>
 								</Col>
-							</Row>
-							<Row type='flex' justify='center' align='middle'>
-								<Col span={12}>
+								<Col span={16}>
 									<center>
 										<Text type='danger'>Already have an account? </Text>
 										<Link to='/login'>
-											<Button type='link'> Sign In </Button>
+											<Button size='large' type='link'> Sign In </Button>
 										</Link>
 									</center>
 								</Col>
