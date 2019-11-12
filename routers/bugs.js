@@ -5,10 +5,6 @@ const passport = require('passport');
 // Initialize router
 const router = express.Router();
 
-// load validator
-
-const verifyBugData = require('../validators/bug.js');
-
 // load Bug model
 const Bug = require('../models/bug.js');
 
@@ -41,14 +37,6 @@ router.get('/', passport.authenticate('jwt', { session: false }), async (req, re
 // ###############################
 // ###############################
 router.post('/', passport.authenticate('jwt', { session: false }), async (req,res) => {
-
-	const { errors, isValid } = verifyBugData(req.body);
-
-	// check the validator output
-	if(!isValid){
-		return res.status(400).json(errors);
-	}
-
 	const newBug = new Bug({
 		title: req.body.title,
 		openedBy: req.user.id,

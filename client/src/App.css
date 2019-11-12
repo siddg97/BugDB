@@ -5,14 +5,15 @@
 	font-family: 'Roboto Mono', monospace;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], textarea {
 	width: 100%;
+	font-size: 16px;
 	display: inline-block;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 12px 20px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
 	background:
 }

@@ -27,8 +27,6 @@ export const setBug = bug => {
 	};
 }
 
-
-
 // get all bugs
 export const getBugs = () => dispatch => {
 	dispatch(bugsLoading());
@@ -86,6 +84,6 @@ export const bugsLoading = () => {
 const getErrors = err => {
 	return {
 		type:GET_ERRORS,
-		payload: err.response.data ? err.response.data : {}
+		payload: err.response.data
 	}
 }
