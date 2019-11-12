@@ -102,7 +102,7 @@ class Bugs extends React.Component {
 							<h2>Title: {bug.title}</h2>
 							<h3>Decription: {bug.description}</h3>
 							<h3>STATUS: <b>{bug.status}</b></h3>
-							<h3>Date opened: <b>{new Date(bug.openedOn).toDateString()}</b></h3>
+							<h3>Date opened: <b>{bug.openedOn}</b></h3>
 							<button onClick={this.onDelete.bind(this, bug._id)}> delete </button>
 						</li>
 					)

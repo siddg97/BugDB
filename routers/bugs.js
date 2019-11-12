@@ -41,7 +41,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), async (req,re
 		title: req.body.title,
 		openedBy: req.user.id,
 		status: req.body.status,
-		openedOn: Date.now(),
+		openedOn: new Date().toDateString(),
 		description: req.body.description
 	});
 
