@@ -95,6 +95,7 @@ class Bugs extends React.Component {
 			<div style={{background:'#fff', padding:32}}>
 				<h2> Bugs Opened by <b>{user.name}</b> : </h2>
 				<BugGrid />
+				<br/>
 				<center><Button type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
 				<Drawer
 					visible={this.state.drawer}
@@ -108,22 +109,22 @@ class Bugs extends React.Component {
 									<Col span={24} style={colStyle}>
 										<Title level={3}>Open a new bug</Title>
 									</Col>
-									<Col span={12} style={colStyle}>
+									<Col span={24} style={colStyle}>
 										<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
-										{ errors.title ? <Text type='danger'>{errors.title}</Text> : '' }
+										{ errors.title ? <Text type='danger'>{errors.title}</Text> : <br/> }
 									</Col>
-									<Col span={12} style={colStyle}>
+									<Col span={24} style={colStyle}>
 										<input type='text' placeholder='Enter status...' id='status' value={status} onChange={this.onChange} />
-										{ errors.status ? <Text type='danger'>{errors.status}</Text> : '' }
+										{ errors.status ? <Text type='danger'>{errors.status}</Text> : <br/> }
 									</Col>
 									<Col span={24} style={colStyle}>
 										<textarea rows='10' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
-										{ errors.description ? <Text type='danger'>{errors.description}</Text> : '' }
+										{ errors.description ? <Text type='danger'>{errors.description}</Text> : <br/> }
 									</Col>
-									<Col span={4} style={colStyle}>
+									<Col span={6} style={colStyle}>
 										<Button type='primary' block onClick={this.onSubmit}> Open </Button>
 									</Col>
-									<Col span={4} style={colStyle}>
+									<Col push={12} span={6} style={colStyle}>
 										<Button type='danger' block onClick={this.resetForm}> Reset </Button>
 									</Col>
 								</Row>

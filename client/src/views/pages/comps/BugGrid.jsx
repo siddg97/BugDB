@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Row, Col, Card, Button, Icon, Typography, notification } from 'antd';
 import EditBug from './EditBug.jsx';
+import ExpandBug from './ExpandBug.jsx';
 
 const { Text, Title } = Typography;
 
@@ -40,19 +41,19 @@ class BugGrid extends React.Component {
 									<Title level={3}>{bug.title}</Title>
 								</Col>
 								<Col span={24} style={colStyle}>
-									<Text strong> STATUS: <Text type='danger'>{bug.status}</Text></Text>
+									<Text strong> STATUS: </Text><Text type='danger'>{bug.status}</Text>
 								</Col>
 								<Col span={24} style={colStyle}>
-									<Text strong>OPENED ON: <Text>{bug.openedOn.date.day}/{bug.openedOn.date.month}/{bug.openedOn.date.year}</Text></Text>
+									<Text strong>OPENED ON: </Text><Text>{bug.openedOn.date.day}/{bug.openedOn.date.month}/{bug.openedOn.date.year}</Text>
 								</Col>
-								<Col span={8} style={colStyle}>
+								<Col span={6} style={colStyle}>
 									<EditBug bug={bug} />
 								</Col>
-								<Col span={8} style={colStyle}>
-									<center><Button block type='link' size='small'>Info</Button></center>
+								<Col span={12} style={colStyle}>
+									<ExpandBug bug={bug} />
 								</Col>
-								<Col span={8} style={colStyle}>
-									<Button block type='danger' size='small' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button>
+								<Col span={6} style={colStyle}>
+									<center><Button type='danger' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button></center>
 								</Col>
 							</Row>
 						</Card>

@@ -36,9 +36,9 @@ class EditBug extends React.Component {
 	// reset form to default
 	resetForm = () => {
 		this.setState({
-			title: this.state.title,
-			status: this.state.status,
-			description: this.state.description,
+			title: '',
+			status: '',
+			description: '',
 			errors: {}
 		});
 	}
@@ -96,7 +96,7 @@ class EditBug extends React.Component {
 		const colStyle = { padding:16 };
 		return (
 			<div>
-				<Button type='primary' block size='small' onClick={this.openUpdate}><Icon type="edit" /></Button>
+				<center><Button type='primary' onClick={this.openUpdate}><Icon type="edit" /></Button></center>
 				<Drawer
 					visible={this.state.drawer}
 					onClose={this.closeUpdate}
@@ -109,11 +109,11 @@ class EditBug extends React.Component {
 									<Col span={24} style={colStyle}>
 										<Title level={3}>Edit bug</Title>
 									</Col>
-									<Col span={12} style={colStyle}>
+									<Col span={24} style={colStyle}>
 										<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
 										{ errors.title ? <Text type='danger'>{errors.title}</Text> : '' }
 									</Col>
-									<Col span={12} style={colStyle}>
+									<Col span={24} style={colStyle}>
 										<input type='text' placeholder='Enter status...' id='status' value={status} onChange={this.onChange} />
 										{ errors.status ? <Text type='danger'>{errors.status}</Text> : '' }
 									</Col>
@@ -121,10 +121,10 @@ class EditBug extends React.Component {
 										<textarea rows='10' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
 										{ errors.description ? <Text type='danger'>{errors.description}</Text> : '' }
 									</Col>
-									<Col span={4} style={colStyle}>
+									<Col span={6} style={colStyle}>
 										<Button type='primary' block onClick={this.onSubmit}> Update </Button>
 									</Col>
-									<Col span={4} style={colStyle}>
+									<Col push={12} span={6} style={colStyle}>
 										<Button type='danger' block onClick={this.resetForm}> Reset </Button>
 									</Col>
 								</Row>
@@ -138,7 +138,9 @@ class EditBug extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {}
+	return {
+
+	}
 }
 
 export default connect(mapStateToProps, { updateBug })(EditBug);
