@@ -36,7 +36,7 @@ class BugGrid extends React.Component {
 				this.props.bugs.bugList.map((bug,i) =>
 					<Col key={i} span={8} style={colStyle}>
 						<Card hoverable bordered bodyStyle={cardStyle}>
-							<Row type='flex' align='top' justify='start'>
+							<Row type='flex' align='middle' justify='start'>
 								<Col span={24} style={colStyle}>
 									<Title level={3}>{bug.title}</Title>
 								</Col>
@@ -46,14 +46,14 @@ class BugGrid extends React.Component {
 								<Col span={24} style={colStyle}>
 									<Text strong>OPENED ON: </Text><Text>{bug.openedOn.date.day}/{bug.openedOn.date.month}/{bug.openedOn.date.year}</Text>
 								</Col>
-								<Col span={6} style={colStyle}>
-									<EditBug bug={bug} />
-								</Col>
-								<Col span={12} style={colStyle}>
+								<Col span={18} style={colStyle}>
 									<ExpandBug bug={bug} />
 								</Col>
-								<Col span={6} style={colStyle}>
-									<center><Button type='danger' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button></center>
+								<Col span={3} style={colStyle}>
+									<EditBug bug={bug} />
+								</Col>
+								<Col span={3} style={colStyle}>
+									<Button shape='circle' type='danger' size='small' onClick={this.onDelete.bind(this,bug._id)}><Icon type='delete' /></Button>
 								</Col>
 							</Row>
 						</Card>

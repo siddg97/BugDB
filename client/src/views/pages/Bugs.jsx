@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addBug } from '../../redux/actions/bugActions.js';
 import isEmpty from 'is-empty';
 
-import { Drawer, Button, Icon, Row, Col, Typography, notification } from 'antd';
+import { Card, Drawer, Button, Icon, Row, Col, Typography, notification } from 'antd';
 import BugGrid from './comps/BugGrid.jsx';
 
 const { Title, Text } = Typography;
@@ -85,26 +85,32 @@ class Bugs extends React.Component {
 		this.setState({ drawer: false	});
 	}
 
+	handleKeyPress = e => {
+		if(e.key==='Enter'){
+			this.onSubmit(e);
+		}
+	}
+
 
 
 	render() {
 		const { user } = this.props.auth;
 		const { title, status, description, errors } = this.state;
-		const colStyle = {padding:16}
+		const colStyle = {padding:16};
+		const cardStyle = {cursor:'auto'};
 		return (
-			<div style={{background:'#fff', padding:32}}>
-				<h2> Bugs Opened by <b>{user.name}</b> : </h2>
+			<Card title={<Title level={3}> Bugs opened by {user.name} : </Title>} hoverable bordered={false} style={cardStyle}>
 				<BugGrid />
 				<br/>
-				<center><Button type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
+				<center><Button shape='round' type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
 				<Drawer
 					visible={this.state.drawer}
 					onClose={this.closeDrawer}
-					width={'100vw'}
+					width={'75vw'}
 				>
-					<form onSubmit={this.onSubmit}>
+					<form onSubmit={this.onSubmit} onKeyPress={this.handleKeyPress}>
 						<Row type='flex' align='top' justify='center'>
-							<Col span={16} style={colStyle}>
+							<Col span={20} style={colStyle}>
 								<Row type='flex' align='top' justify='start'>
 									<Col span={24} style={colStyle}>
 										<Title level={3}>Open a new bug</Title>
@@ -122,17 +128,17 @@ class Bugs extends React.Component {
 										{ errors.description ? <Text type='danger'>{errors.description}</Text> : <br/> }
 									</Col>
 									<Col span={6} style={colStyle}>
-										<Button type='primary' block onClick={this.onSubmit}> Open </Button>
+										<Button type='primary' shape='round' block onClick={this.onSubmit}> Open </Button>
 									</Col>
-									<Col push={12} span={6} style={colStyle}>
-										<Button type='danger' block onClick={this.resetForm}> Reset </Button>
+									<Col span={6} style={colStyle}>
+										<Button shape='round' type='danger' block onClick={this.resetForm}> Reset </Button>
 									</Col>
 								</Row>
 							</Col>
 						</Row>
 					</form>
 				</Drawer>
-			</div>
+			</Card>
 		)
 	}
 }

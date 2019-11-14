@@ -36,9 +36,9 @@ class EditBug extends React.Component {
 	// reset form to default
 	resetForm = () => {
 		this.setState({
-			title: '',
-			status: '',
-			description: '',
+			title: this.props.bug.title,
+			status: this.props.bug.status,
+			description: this.props.bug.description,
 			errors: {}
 		});
 	}
@@ -71,7 +71,7 @@ class EditBug extends React.Component {
 
 			this.props.updateBug(updatedBug);
 			this.closeUpdate();
-			this.resetForm();
+			this.setState({errors:{}});
 			this.onNotify('success','Updated','Successfully updated the bug')
 		} else {
 			let err = {}
@@ -91,20 +91,30 @@ class EditBug extends React.Component {
 		}
 	}
 
+	handleEnter = e => {
+		if(e.key === 'Enter') {
+			this.onSubmit(e);
+		}
+	}
+
 	render(props) {
 		const { title, status, description , errors } = this.state;
 		const colStyle = { padding:16 };
+		const rowStyle = {minHeight:'100vh', padding:32};
+		const drawerStyle = {background: '#ececec'};
 		return (
 			<div>
-				<center><Button type='primary' onClick={this.openUpdate}><Icon type="edit" /></Button></center>
+				<Button shape='circle' type='primary' size='small' onClick={this.openUpdate}><Icon type="edit" /></Button>
 				<Drawer
 					visible={this.state.drawer}
 					onClose={this.closeUpdate}
-					width={'100vw'}
+					width={'75vw'}
+					bodyStyle={drawerStyle}
+					placement='left'
 				>
-					<form onSubmit={this.onSubmit}>
-						<Row type='flex' align='top' justify='center'>
-							<Col span={16} style={colStyle}>
+					<form onSubmit={this.onSubmit} onKeyPress={this.handleEnter}>
+						<Row type='flex' align='top' justify='center' style={rowStyle}>
+							<Col span={20} style={colStyle}>
 								<Row type='flex' align='top' justify='start'>
 									<Col span={24} style={colStyle}>
 										<Title level={3}>Edit bug</Title>
@@ -122,10 +132,10 @@ class EditBug extends React.Component {
 										{ errors.description ? <Text type='danger'>{errors.description}</Text> : '' }
 									</Col>
 									<Col span={6} style={colStyle}>
-										<Button type='primary' block onClick={this.onSubmit}> Update </Button>
+										<Button shape='round' type='primary' block onClick={this.onSubmit}> Update </Button>
 									</Col>
-									<Col push={12} span={6} style={colStyle}>
-										<Button type='danger' block onClick={this.resetForm}> Reset </Button>
+									<Col span={6} style={colStyle}>
+										<Button shape='round' type='danger' block onClick={this.resetForm}> Reset </Button>
 									</Col>
 								</Row>
 							</Col>
@@ -137,10 +147,4 @@ class EditBug extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-
-	}
-}
-
-export default connect(mapStateToProps, { updateBug })(EditBug);
+export default connect(null, { updateBug })(EditBug);
