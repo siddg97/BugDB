@@ -1,5 +1,6 @@
 import React from 'react';
 import { deleteBug } from '../../../redux/actions/bugActions.js';
+import { connect } from 'react-redux';
 
 import { Icon, Button, Drawer, Typography, Descriptions, Row, Col, Card, notification } from 'antd';
 import EditBug from './EditBug.jsx';
@@ -89,4 +90,4 @@ class ExpandBug extends React.Component {
 	}
 }
 
-export default ExpandBug;
+export default connect(null, { deleteBug })(ExpandBug);
