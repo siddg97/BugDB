@@ -96,48 +96,56 @@ class Bugs extends React.Component {
 	render() {
 		const { user } = this.props.auth;
 		const { title, status, description, errors } = this.state;
-		const colStyle = {padding:16};
+		const colStyle = {padding:8};
 		const cardStyle = {cursor:'auto'};
 		return (
-			<Card title={<Title level={3}> Bugs opened by {user.name} : </Title>} hoverable bordered={false} style={cardStyle}>
-				<BugGrid />
-				<br/>
-				<center><Button shape='round' type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
-				<Drawer
-					visible={this.state.drawer}
-					onClose={this.closeDrawer}
-					width={'75vw'}
-				>
-					<form onSubmit={this.onSubmit} onKeyPress={this.handleKeyPress}>
-						<Row type='flex' align='top' justify='center'>
-							<Col span={20} style={colStyle}>
-								<Row type='flex' align='top' justify='start'>
-									<Col span={24} style={colStyle}>
-										<Title level={3}>Open a new bug</Title>
-									</Col>
-									<Col span={24} style={colStyle}>
-										<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
-										{ errors.title ? <Text type='danger'>{errors.title}</Text> : <br/> }
-									</Col>
-									<Col span={24} style={colStyle}>
-										<input type='text' placeholder='Enter status...' id='status' value={status} onChange={this.onChange} />
-										{ errors.status ? <Text type='danger'>{errors.status}</Text> : <br/> }
-									</Col>
-									<Col span={24} style={colStyle}>
-										<textarea rows='10' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
-										{ errors.description ? <Text type='danger'>{errors.description}</Text> : <br/> }
-									</Col>
-									<Col span={6} style={colStyle}>
-										<Button type='primary' shape='round' block onClick={this.onSubmit}> Open </Button>
-									</Col>
-									<Col span={6} style={colStyle}>
-										<Button shape='round' type='danger' block onClick={this.resetForm}> Reset </Button>
+			<Card hoverable bordered={false} style={cardStyle}>
+				<Row type='flex' align='top' justify='center'>
+					<Col span={24}>
+						<Title level={3}> Bugs opened by {user.name} : </Title>
+					</Col>
+					<Col span={24} style={colStyle}>
+						<BugGrid />
+					</Col>
+					<Col span={24} style={colStyle}>
+						<center><Button shape='round' type='primary' size='large' onClick={this.openDrawer}><Icon type='plus' size='large'/> Open new bug</Button></center>
+						<Drawer
+							visible={this.state.drawer}
+							onClose={this.closeDrawer}
+							width={'75vw'}
+						>
+							<form onSubmit={this.onSubmit} onKeyPress={this.handleKeyPress}>
+								<Row type='flex' align='top' justify='center'>
+									<Col span={20} style={colStyle}>
+										<Row type='flex' align='top' justify='start'>
+											<Col span={24} style={colStyle}>
+												<Title level={3}>Open a new bug</Title>
+											</Col>
+											<Col span={24} style={colStyle}>
+												<input type='text' placeholder='Enter title...' id='title' value={title} onChange={this.onChange} />
+												{ errors.title ? <Text type='danger'>{errors.title}</Text> : <br/> }
+											</Col>
+											<Col span={24} style={colStyle}>
+												<input type='text' placeholder='Enter status...' id='status' value={status} onChange={this.onChange} />
+												{ errors.status ? <Text type='danger'>{errors.status}</Text> : <br/> }
+											</Col>
+											<Col span={24} style={colStyle}>
+												<textarea rows='10' placeholder='Enter description....' id='description' value={description} onChange={this.onChange} />
+												{ errors.description ? <Text type='danger'>{errors.description}</Text> : <br/> }
+											</Col>
+											<Col span={6} style={colStyle}>
+												<Button type='primary' shape='round' block onClick={this.onSubmit}> Open </Button>
+											</Col>
+											<Col span={6} style={colStyle}>
+												<Button shape='round' type='danger' block onClick={this.resetForm}> Reset </Button>
+											</Col>
+										</Row>
 									</Col>
 								</Row>
-							</Col>
-						</Row>
-					</form>
-				</Drawer>
+							</form>
+						</Drawer>
+					</Col>
+				</Row>
 			</Card>
 		)
 	}
